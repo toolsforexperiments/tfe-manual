@@ -1,7 +1,7 @@
 Server Core
 ===========
 
-.. automodule:: instrumentserver.server.application
+.. automodule:: instrumentserver.server.core
     :members:
 
 

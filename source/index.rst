@@ -14,6 +14,8 @@ It will go through instrumentserver, plottr and labcore.
    :caption: Contents:
 
    plottr/index
+   labcore/index
+   instrumentserver/index
    api/index
    examples/index
 

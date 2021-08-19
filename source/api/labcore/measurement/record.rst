@@ -1,6 +1,6 @@
-Record Module API
-=================
+Record
+======
 
 .. automodule:: labcore.measurement.record
     :members:
-    :inherited-members:
+

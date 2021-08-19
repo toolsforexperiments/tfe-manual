@@ -7,3 +7,4 @@ API Index Page
 
     labcore/index
     instrumentserver/index
+    plottr/index

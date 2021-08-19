@@ -31,6 +31,7 @@ author = 'Wolfgang Pfaff, Marcos Frenkel'
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
               'nbsphinx',
+              'sphinx-jsonschema'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

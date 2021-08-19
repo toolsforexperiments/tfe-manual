@@ -7,7 +7,6 @@ Labcore API
 
     measurement/sweep
     measurement/record
-    plotting/utils
     utils
     ddh5
 
