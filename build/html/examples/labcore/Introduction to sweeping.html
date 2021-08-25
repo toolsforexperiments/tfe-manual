@@ -1,0 +1,1678 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Sweep Guide &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to Use OPX Sweeping" href="structured_OPX_implementation.html" />
+    <link rel="prev" title="Dummy Measurement Without Server" href="../general/dummy_measurement_without_server/measurement_notebook.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Index Page</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples and Guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#general">General</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#labcore">Labcore</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sweep Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Init">Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Intro">Intro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Looking-a-bit-deeper">Looking a bit deeper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="structured_OPX_implementation.html">How to Use OPX Sweeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#plotrr">Plotrr</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Examples and Guides</a> &raquo;</li>
+        
+      <li>Sweep Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/examples/labcore/Introduction to sweeping.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Sweep-Guide">
+<h1>Sweep Guide<a class="headerlink" href="#Sweep-Guide" title="Permalink to this headline">¶</a></h1>
+<section id="Init">
+<h2>Init<a class="headerlink" href="#Init" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># %load_ext autoreload</span>
+<span class="c1"># %autoreload 2</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">qcodes</span> <span class="k">as</span> <span class="nn">qc</span>
+
+<span class="kn">from</span> <span class="nn">labcore.measurement</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Intro">
+<h2>Intro<a class="headerlink" href="#Intro" title="Permalink to this headline">¶</a></h2>
+<p>The way we would like to measure looks something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Measurement</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">sweep_object</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">setup</span><span class="o">=</span><span class="n">setup_function</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">finish</span><span class="o">=</span><span class="n">teardown_function</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">... </span><span class="n">m</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">config_options</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The reason why we would like to define the measurement in an object is to be able to have access to main characteristics (such as the type of data acquired during the run) in advance, before any measurement code is executed. This will also be useful for serializing measurements.</p>
+<p>The most tricky aspect here is to define what the <code class="docutils literal notranslate"><span class="pre">sweep</span></code> object is. Often we define the flow in an experiment by directly using for-loops and the like. But that will not allow us the desired goals. We need to come up with an object-based description that makes the essence of the flow clear without executing it.</p>
+<section id="Main-requirements-for-sweeps">
+<h3>Main requirements for sweeps<a class="headerlink" href="#Main-requirements-for-sweeps" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>a sweep object can be iterated over. each step performs some actions, and returns some data. that means, we want to be able to use it as follows. We call the dictionary that is produced for each step a <strong>record</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep_object</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">{variable_1: some_data, variable_2: more_data}</span>
+<span class="go">{variable_1: different_data, variable_2: more_different_data}</span>
+</pre></div>
+</div>
+</li>
+<li><p>a sweep object is defined by a pointer and 0 or more actions.</p>
+<ul class="simple">
+<li><p>A pointer is again an iterable, and the coordinates it traverses may or may not be known in advance.</p></li>
+<li><p>Actions are callables that may take the values the pointer is returning at each iteration as arguments. Each action is executed once for each pointer.</p></li>
+</ul>
+<p>A simple sweep can then be defined like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sweep_object</span> <span class="o">=</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">func_1</span><span class="p">,</span> <span class="n">func_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Executing this sweep will loop over the range, and will then call <code class="docutils literal notranslate"><span class="pre">func_1(i)</span></code> and subsequently <code class="docutils literal notranslate"><span class="pre">func_2(i)</span></code>, for each <code class="docutils literal notranslate"><span class="pre">i</span></code> in the range from 0 to 4.</p>
+</li>
+<li><p>Sweeps can be combined in ways that result in nesting, zipping, or appending. Combining sweeps again results in a sweep. This will allow us to construct modular measurements from pre-defined blocks.</p></li>
+<li><p>After definition, but before execution, we can easily infer what records the sweep produces.</p></li>
+</ul>
+</section>
+</section>
+<section id="Examples">
+<h2>Examples<a class="headerlink" href="#Examples" title="Permalink to this headline">¶</a></h2>
+<p>In the following first look a prototypical measurement protocol. After that we have a closer look at individual components.</p>
+<section id="Jumping-right-in">
+<h3>Jumping right in<a class="headerlink" href="#Jumping-right-in" title="Permalink to this headline">¶</a></h3>
+<section id="A-prototypical,-slightly-non-trivial-measurement-protocol">
+<h4>A prototypical, slightly non-trivial measurement protocol<a class="headerlink" href="#A-prototypical,-slightly-non-trivial-measurement-protocol" title="Permalink to this headline">¶</a></h4>
+<p>Lets say we have the following task:</p>
+<ol class="arabic simple">
+<li><p>our basic measurement is to record the phase as a function of frequency (for instance with a VNA)</p></li>
+<li><p>we do this as function of some other parameter that tunes something in the experiment (maybe a voltage)</p></li>
+<li><p>finally, we need to average out some slow noise, so we repeat everything some number of times</p></li>
+<li><p>the tuning might heat up the sample, so we want to keep an eye on it. We want to measure the fridge temperature once per repetition.</p></li>
+</ol>
+<p>Being good with organizing our tools and prefering a modular way of putting together measurements, we have already defined the main building blocks so we can re-use them. They might even be located in some module that import for a particular class of experiments.</p>
+<p>The functions that return data we want to save later are decorated with <code class="docutils literal notranslate"><span class="pre">recording</span></code>, to describe what kind of data they produce. (Note: the decorator is not necessary; we can also use the function <code class="docutils literal notranslate"><span class="pre">record_as</span></code>, as we’ll see below)</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># these are just some dummy functions that follow the recipe outlined above.</span>
+
+<span class="k">def</span> <span class="nf">tune_something</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;adjusting something in-situ using param=</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nd">@recording</span><span class="p">(</span>
+    <span class="n">independent</span><span class="p">(</span><span class="s1">&#39;frq&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Hz&#39;</span><span class="p">),</span>
+    <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;phase&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;frq&#39;</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;rad&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">measure_frequency_trace</span><span class="p">(</span><span class="n">npoints</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">npoints</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">npoints</span><span class="p">)</span>
+
+
+<span class="nd">@recording</span><span class="p">(</span><span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;K&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">measure_temperature</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We now use these functions to assemble the measurement loop. It works like this:</p>
+<ul class="simple">
+<li><p>The matrix multiplication operator <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> creates a nested loop of sweeps (the outer loop are the repetitions, the inner loop the tuning of the parameter).</p></li>
+<li><p>The multiplication operator <code class="docutils literal notranslate"><span class="pre">*</span></code> is like an inner product (or zip), i.e., results in element-wise combination. That is, for each value of <code class="docutils literal notranslate"><span class="pre">param</span></code> we run <code class="docutils literal notranslate"><span class="pre">measure_frequency_trace</span></code>.</p></li>
+<li><p>The addition operator <code class="docutils literal notranslate"><span class="pre">+</span></code> appends sweeps or actions to sweeps. I.e., <code class="docutils literal notranslate"><span class="pre">measure_temperature</span></code> is executed once after each <code class="docutils literal notranslate"><span class="pre">param</span></code> sweep.</p></li>
+</ul>
+<p>Finally, we can, even without running any measurement code, already look at the data that the loop will produce.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;repetition&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="o">@</span> <span class="p">(</span><span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;param&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">tune_something</span><span class="p">)</span>
+       <span class="o">*</span> <span class="n">measure_frequency_trace</span>
+       <span class="o">+</span> <span class="n">measure_temperature</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">sweep</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(repetition, param, frq, phase(repetition, param, frq), temperature(repetition))
+
+</pre></div></div>
+</div>
+<p>Running the sweep is very easy – we can simply iterate over it. Each sweep coordinate produces a data set that by default contains everything that has been annotated as recording data (the <code class="docutils literal notranslate"><span class="pre">sweep_parameter</span></code> function implicitly generates a record for the parameter that is being varied).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+adjusting something in-situ using param=0
+{&#39;repetition&#39;: 0, &#39;param&#39;: 0, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([-1.10076157,  2.84741127, -0.31184165]), &#39;temperature&#39;: None}
+adjusting something in-situ using param=1
+{&#39;repetition&#39;: 0, &#39;param&#39;: 1, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([-0.40743812,  0.30309396,  0.06591226]), &#39;temperature&#39;: None}
+adjusting something in-situ using param=2
+{&#39;repetition&#39;: 0, &#39;param&#39;: 2, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([-0.8933407 ,  0.37264877, -1.3794646 ]), &#39;temperature&#39;: None}
+{&#39;repetition&#39;: 0, &#39;param&#39;: None, &#39;frq&#39;: None, &#39;phase&#39;: None, &#39;temperature&#39;: 0.10825390503990606}
+adjusting something in-situ using param=0
+{&#39;repetition&#39;: 1, &#39;param&#39;: 0, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([ 1.09678375, -0.12856661, -0.59978759]), &#39;temperature&#39;: None}
+adjusting something in-situ using param=1
+{&#39;repetition&#39;: 1, &#39;param&#39;: 1, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([-1.68062208,  1.56943213,  0.78625889]), &#39;temperature&#39;: None}
+adjusting something in-situ using param=2
+{&#39;repetition&#39;: 1, &#39;param&#39;: 2, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([1.11681142, 0.11909106, 2.29498514]), &#39;temperature&#39;: None}
+{&#39;repetition&#39;: 1, &#39;param&#39;: None, &#39;frq&#39;: None, &#39;phase&#39;: None, &#39;temperature&#39;: 0.090471139257355}
+adjusting something in-situ using param=0
+{&#39;repetition&#39;: 2, &#39;param&#39;: 0, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([-2.39051317,  1.06131723, -0.70044153]), &#39;temperature&#39;: None}
+adjusting something in-situ using param=1
+{&#39;repetition&#39;: 2, &#39;param&#39;: 1, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([ 0.60603763, -0.05715884,  0.5261352 ]), &#39;temperature&#39;: None}
+adjusting something in-situ using param=2
+{&#39;repetition&#39;: 2, &#39;param&#39;: 2, &#39;frq&#39;: array([1000000., 2000000., 3000000.]), &#39;phase&#39;: array([ 0.4143322 , -0.83494482, -1.82764854]), &#39;temperature&#39;: None}
+{&#39;repetition&#39;: 2, &#39;param&#39;: None, &#39;frq&#39;: None, &#39;phase&#39;: None, &#39;temperature&#39;: 0.11385046707481113}
+</pre></div></div>
+</div>
+</section>
+<section id="A-QCoDeS-parameter-sweep">
+<h4>A QCoDeS parameter sweep<a class="headerlink" href="#A-QCoDeS-parameter-sweep" title="Permalink to this headline">¶</a></h4>
+<p>Sweeps are often done over qcodes parameters, and the data we acquire may also come from parameters.</p>
+<p>In this minimal example we set a parameter (<code class="docutils literal notranslate"><span class="pre">x</span></code>) to a range of values, and get data from another parameter for each set value.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">Parameter</span>
+
+<span class="k">def</span> <span class="nf">measure_stuff</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">set_cmd</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;setting x to </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">get_cmd</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">get_parameter</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+setting x to 0
+setting x to 0
+{&#39;x&#39;: 0, &#39;data&#39;: -1.8709973583239499}
+setting x to 1
+{&#39;x&#39;: 1, &#39;data&#39;: -0.9951114987590062}
+setting x to 2
+{&#39;x&#39;: 2, &#39;data&#39;: 1.5057536595964158}
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Constructing-single-sweeps">
+<h3>Constructing single sweeps<a class="headerlink" href="#Constructing-single-sweeps" title="Permalink to this headline">¶</a></h3>
+<p>The main ingredients for a single sweep is 1) a pointer iterable, and 2) a variable number of actions to execute at each iteration step. Both pointer and actions may generate records.</p>
+<p>The most bare example would look something like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{}
+{}
+{}
+</pre></div></div>
+</div>
+<p>We loop over the iterable, but only empty records are generated.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">record_as</span></code> to indicate that generated values should be recorded:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">my_func</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">sweep</span> <span class="o">=</span> <span class="n">Sweep</span><span class="p">(</span>
+    <span class="n">record_as</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">independent</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)),</span> <span class="c1"># this is the pointer. We specify &#39;x&#39; as an independent (we control it)</span>
+    <span class="n">record_as</span><span class="p">(</span><span class="n">my_func</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="c1"># y is not declared as independent;</span>
+                            <span class="c1"># dependent (on what it depends is partially determined by the sweep) is the default.</span>
+<span class="p">)</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">sweep</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(x, y(x))
+{&#39;x&#39;: 0, &#39;y&#39;: 0}
+{&#39;x&#39;: 1, &#39;y&#39;: 0}
+{&#39;x&#39;: 2, &#39;y&#39;: 0}
+</pre></div></div>
+</div>
+<p>A more convenient way of doing exactly the same thing:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sweep</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">my_func</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x&#39;: 0, &#39;y&#39;: 0}
+{&#39;x&#39;: 1, &#39;y&#39;: 0}
+{&#39;x&#39;: 2, &#39;y&#39;: 0}
+</pre></div></div>
+</div>
+<p>Elements can also produce records with multiple parameters:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">my_func</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="n">sweep</span> <span class="o">=</span> <span class="n">Sweep</span><span class="p">(</span>
+    <span class="n">record_as</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]),</span> <span class="n">independent</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">),</span> <span class="n">independent</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)),</span> <span class="c1"># a pointer with two parameters</span>
+    <span class="n">record_as</span><span class="p">(</span><span class="n">my_func</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">sweep</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(number, string, one(number, string), two(number, string))
+{&#39;number&#39;: 0, &#39;string&#39;: &#39;a&#39;, &#39;one&#39;: 1, &#39;two&#39;: 2}
+{&#39;number&#39;: 1, &#39;string&#39;: &#39;b&#39;, &#39;one&#39;: 1, &#39;two&#39;: 2}
+{&#39;number&#39;: 2, &#39;string&#39;: &#39;c&#39;, &#39;one&#39;: 1, &#39;two&#39;: 2}
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Specifying-options-before-executing-a-sweep">
+<h3>Specifying options before executing a sweep<a class="headerlink" href="#Specifying-options-before-executing-a-sweep" title="Permalink to this headline">¶</a></h3>
+<p>Many functions we are using take optional parameters we only want to specify just before executing the sweep (but are constant throughout the sweep).</p>
+<p>If we don’t want to resort to global variables we can do so by using <code class="docutils literal notranslate"><span class="pre">Sweep.set_action_opts</span></code>. It accepts the names of action functions as keywords, and dictionaries containing keyword arguments to pass to those functions as value. Keywords specified in this way always override key words that are passed around internally in the sweep (See further below for an explanation on how parameters are passed internally).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">test_fun</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">a_property</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inside test_fun:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">, property: </span><span class="si">{</span><span class="n">a_property</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+<span class="k">def</span> <span class="nf">another_fun</span><span class="p">(</span><span class="n">another_value</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inside another_fun:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;my value: </span><span class="si">{</span><span class="n">another_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;other stuff:&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+<span class="n">sweep_1</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">test_fun</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)))</span>
+<span class="n">sweep_2</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;another_value&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">another_fun</span><span class="p">)</span>
+
+<span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_1</span>
+    <span class="o">@</span> <span class="n">sweep_2</span>
+<span class="p">)</span>
+
+<span class="n">sweep</span><span class="o">.</span><span class="n">set_action_opts</span><span class="p">(</span>
+    <span class="n">test_fun</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">a_property</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">another_fun</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">another_value</span><span class="o">=</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="n">another_property</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+inside test_fun:
+value: 0, property: 1
+
+inside another_fun:
+my value: Hello
+other stuff: () {&#39;value&#39;: 0, &#39;data&#39;: 0, &#39;another_property&#39;: True}
+
+Data: {&#39;value&#39;: 0, &#39;data&#39;: 0, &#39;another_value&#39;: 0}
+
+inside another_fun:
+my value: Hello
+other stuff: () {&#39;value&#39;: 0, &#39;data&#39;: 0, &#39;another_property&#39;: True}
+
+Data: {&#39;value&#39;: 0, &#39;data&#39;: 0, &#39;another_value&#39;: 1}
+
+inside test_fun:
+value: 1, property: 1
+
+inside another_fun:
+my value: Hello
+other stuff: () {&#39;value&#39;: 1, &#39;data&#39;: 1, &#39;another_property&#39;: True}
+
+Data: {&#39;value&#39;: 1, &#39;data&#39;: 1, &#39;another_value&#39;: 0}
+
+inside another_fun:
+my value: Hello
+other stuff: () {&#39;value&#39;: 1, &#39;data&#39;: 1, &#39;another_property&#39;: True}
+
+Data: {&#39;value&#39;: 1, &#39;data&#39;: 1, &#39;another_value&#39;: 1}
+
+inside test_fun:
+value: 2, property: 1
+
+inside another_fun:
+my value: Hello
+other stuff: () {&#39;value&#39;: 2, &#39;data&#39;: 2, &#39;another_property&#39;: True}
+
+Data: {&#39;value&#39;: 2, &#39;data&#39;: 2, &#39;another_value&#39;: 0}
+
+inside another_fun:
+my value: Hello
+other stuff: () {&#39;value&#39;: 2, &#39;data&#39;: 2, &#39;another_property&#39;: True}
+
+Data: {&#39;value&#39;: 2, &#39;data&#39;: 2, &#39;another_value&#39;: 1}
+
+</pre></div></div>
+</div>
+</section>
+<section id="Appending">
+<h3>Appending<a class="headerlink" href="#Appending" title="Permalink to this headline">¶</a></h3>
+<p>A simple example for how to append sweeps to each other. The <code class="docutils literal notranslate"><span class="pre">sweep_parameter</span></code> function creates a 1D sweep over a parameter that we can specify just with a name. It will automatically result in a returned record with that name when it is set.</p>
+<p>We create two sweeps that consist of a parameter sweep and an action that returns a random number as dependent variable. The sweep parameter will automatically be inserted as a dependency in that case. Here, the annotation of the return data is done using <code class="docutils literal notranslate"><span class="pre">record_as</span></code>. This allows us to use the same function twice with different return data names.</p>
+<p>We finally attach another function call to the sweep. It is executed only once at the very end (internally it’s made into a ‘null sweep’). It is also not annotated at all, so won’t record any data.</p>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">Sweep.return_none</span></code> controls whether we include data fields that have returned nothing during setting a pointer or executing an action. It can be set on the class or the instance of a particular sweep. Setting it to true (the default) guarantees that each data spec of the sweep has an entry per sweep point, even if it is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_random_number</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_another_random_number</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rolling the dice!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+
+
+<span class="c1"># change this to see what happens.</span>
+<span class="n">Sweep</span><span class="o">.</span><span class="n">record_none</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">sweep_1</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)))</span>
+<span class="n">sweep_2</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep_1</span> <span class="o">+</span> <span class="n">sweep_2</span> <span class="o">+</span> <span class="n">get_another_random_number</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># just to set it back for the other examples</span>
+<span class="n">Sweep</span><span class="o">.</span><span class="n">record_none</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x&#39;: 0, &#39;y&#39;: 0.4094965023520305}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.37484391951956075}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.9726320893513312}
+{&#39;a&#39;: 0, &#39;b&#39;: 0.6166582281823296}
+{&#39;a&#39;: 1, &#39;b&#39;: 0.5551469169493615}
+{&#39;a&#39;: 2, &#39;b&#39;: 0.6494322774816023}
+{&#39;a&#39;: 3, &#39;b&#39;: 0.6739660392861476}
+rolling the dice!
+{}
+</pre></div></div>
+</div>
+</section>
+<section id="Multiplying">
+<h3>Multiplying<a class="headerlink" href="#Multiplying" title="Permalink to this headline">¶</a></h3>
+<p>By multiplying we refer to an inner product, i.e., the result is basically what you’d expect from <code class="docutils literal notranslate"><span class="pre">zip</span></code>-ing two iterables.</p>
+<p>Simplest case: we have a sweep and want to attach another action to each sweep point:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;data_1&#39;</span><span class="p">)))</span>
+    <span class="o">*</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;data_2&#39;</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">sweep</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(x, data_1(x), data_2(x))
+
+{&#39;x&#39;: 0, &#39;data_1&#39;: 0.7616293736584214, &#39;data_2&#39;: 0.7799067412792655}
+{&#39;x&#39;: 1, &#39;data_1&#39;: 0.205254849101963, &#39;data_2&#39;: 0.6265510518114651}
+{&#39;x&#39;: 2, &#39;data_1&#39;: 0.8664803370425319, &#39;data_2&#39;: 0.29921238592233745}
+</pre></div></div>
+</div>
+<p>If the two objects we want to combine are both sweeps, then we get zip-like behavior (and dependencies stay separate).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;data_1&#39;</span><span class="p">)))</span>
+    <span class="o">*</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;data_2&#39;</span><span class="p">)))</span>
+<span class="p">)</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">sweep</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(x, data_1(x), y, data_2(y))
+
+{&#39;x&#39;: 0, &#39;data_1&#39;: 0.008267876269323349, &#39;y&#39;: 0, &#39;data_2&#39;: 0.8693576160091558}
+{&#39;x&#39;: 1, &#39;data_1&#39;: 0.308242305613855, &#39;y&#39;: 1, &#39;data_2&#39;: 0.4334851201197726}
+{&#39;x&#39;: 2, &#39;data_1&#39;: 0.29961367507351766, &#39;y&#39;: 2, &#39;data_2&#39;: 0.2125085208556461}
+</pre></div></div>
+</div>
+</section>
+<section id="Nesting-sweeps">
+<h3>Nesting sweeps<a class="headerlink" href="#Nesting-sweeps" title="Permalink to this headline">¶</a></h3>
+<p>The most simple example:</p>
+<p>Sweep parameters (say, ‘x’, ‘y’, and ‘z’) against each other, and perform a measurement at each point. For syntactic brevity we’re using the matrix multiplication (‘&#64;’) operator for nesting (you can also use <code class="docutils literal notranslate"><span class="pre">labcore.measurement.sweep.nest_sweeps</span></code>).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@recording</span><span class="p">(</span><span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;my_data&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">measure_something</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+
+<span class="n">my_sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="o">@</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="o">@</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+    <span class="o">@</span> <span class="n">measure_something</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">my_sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x&#39;: 0, &#39;y&#39;: 0.0, &#39;z&#39;: -5, &#39;my_data&#39;: 0.5463647593417098}
+{&#39;x&#39;: 0, &#39;y&#39;: 0.0, &#39;z&#39;: -4, &#39;my_data&#39;: 0.42039580778126084}
+{&#39;x&#39;: 0, &#39;y&#39;: 0.0, &#39;z&#39;: -3, &#39;my_data&#39;: 0.0863297392560125}
+{&#39;x&#39;: 0, &#39;y&#39;: 0.5, &#39;z&#39;: -5, &#39;my_data&#39;: 0.6667065949897614}
+{&#39;x&#39;: 0, &#39;y&#39;: 0.5, &#39;z&#39;: -4, &#39;my_data&#39;: 0.5640608701912103}
+{&#39;x&#39;: 0, &#39;y&#39;: 0.5, &#39;z&#39;: -3, &#39;my_data&#39;: 0.5423047888881569}
+{&#39;x&#39;: 0, &#39;y&#39;: 1.0, &#39;z&#39;: -5, &#39;my_data&#39;: 0.937230710906636}
+{&#39;x&#39;: 0, &#39;y&#39;: 1.0, &#39;z&#39;: -4, &#39;my_data&#39;: 0.7702985778019462}
+{&#39;x&#39;: 0, &#39;y&#39;: 1.0, &#39;z&#39;: -3, &#39;my_data&#39;: 0.22377862008935256}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.0, &#39;z&#39;: -5, &#39;my_data&#39;: 0.1985299090073276}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.0, &#39;z&#39;: -4, &#39;my_data&#39;: 0.6573053083491838}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.0, &#39;z&#39;: -3, &#39;my_data&#39;: 0.22783041062601284}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.5, &#39;z&#39;: -5, &#39;my_data&#39;: 0.5941299018923976}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.5, &#39;z&#39;: -4, &#39;my_data&#39;: 0.7251513449604327}
+{&#39;x&#39;: 1, &#39;y&#39;: 0.5, &#39;z&#39;: -3, &#39;my_data&#39;: 0.26055331694114103}
+{&#39;x&#39;: 1, &#39;y&#39;: 1.0, &#39;z&#39;: -5, &#39;my_data&#39;: 0.25674732058929683}
+{&#39;x&#39;: 1, &#39;y&#39;: 1.0, &#39;z&#39;: -4, &#39;my_data&#39;: 0.43059626650811655}
+{&#39;x&#39;: 1, &#39;y&#39;: 1.0, &#39;z&#39;: -3, &#39;my_data&#39;: 0.10816840839248154}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.0, &#39;z&#39;: -5, &#39;my_data&#39;: 0.24464535182277147}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.0, &#39;z&#39;: -4, &#39;my_data&#39;: 0.9452503551993938}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.0, &#39;z&#39;: -3, &#39;my_data&#39;: 0.39100680206172544}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.5, &#39;z&#39;: -5, &#39;my_data&#39;: 0.5357745830351727}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.5, &#39;z&#39;: -4, &#39;my_data&#39;: 0.28473076688693943}
+{&#39;x&#39;: 2, &#39;y&#39;: 0.5, &#39;z&#39;: -3, &#39;my_data&#39;: 0.5513507184473132}
+{&#39;x&#39;: 2, &#39;y&#39;: 1.0, &#39;z&#39;: -5, &#39;my_data&#39;: 0.17930548040331806}
+{&#39;x&#39;: 2, &#39;y&#39;: 1.0, &#39;z&#39;: -4, &#39;my_data&#39;: 0.32524702876496947}
+{&#39;x&#39;: 2, &#39;y&#39;: 1.0, &#39;z&#39;: -3, &#39;my_data&#39;: 0.9214298968442574}
+</pre></div></div>
+</div>
+<p>The outer loops can be more complex sweeps as well – for example, we can also execute measurements on each nesting level.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">measure_something</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+
+<span class="n">sweep_1</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">measure_something</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">))</span>
+<span class="n">sweep_2</span> <span class="o">=</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">measure_something</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep_1</span> <span class="o">@</span> <span class="n">sweep_2</span> <span class="o">@</span> <span class="n">record_as</span><span class="p">(</span><span class="n">get_random_number</span><span class="p">,</span> <span class="s1">&#39;more_data&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x&#39;: 0, &#39;a&#39;: 0.5873625661621503, &#39;y&#39;: 0, &#39;b&#39;: 0.574052863282486, &#39;more_data&#39;: 0.5442260125411729}
+{&#39;x&#39;: 0, &#39;a&#39;: 0.5873625661621503, &#39;y&#39;: 1, &#39;b&#39;: 0.617226345202642, &#39;more_data&#39;: 0.8957756985108019}
+{&#39;x&#39;: 0, &#39;a&#39;: 0.5873625661621503, &#39;y&#39;: 2, &#39;b&#39;: 0.8514859887878549, &#39;more_data&#39;: 0.04578646455435931}
+{&#39;x&#39;: 0, &#39;a&#39;: 0.5873625661621503, &#39;y&#39;: 3, &#39;b&#39;: 0.9586527378963369, &#39;more_data&#39;: 0.8447622676501859}
+{&#39;x&#39;: 1, &#39;a&#39;: 0.2267792537892548, &#39;y&#39;: 0, &#39;b&#39;: 0.1905793083792563, &#39;more_data&#39;: 0.7864745760222425}
+{&#39;x&#39;: 1, &#39;a&#39;: 0.2267792537892548, &#39;y&#39;: 1, &#39;b&#39;: 0.6854490064042752, &#39;more_data&#39;: 0.2897639351841491}
+{&#39;x&#39;: 1, &#39;a&#39;: 0.2267792537892548, &#39;y&#39;: 2, &#39;b&#39;: 0.6403558109006632, &#39;more_data&#39;: 0.8858329848843944}
+{&#39;x&#39;: 1, &#39;a&#39;: 0.2267792537892548, &#39;y&#39;: 3, &#39;b&#39;: 0.7128289569479528, &#39;more_data&#39;: 0.03623318741786408}
+{&#39;x&#39;: 2, &#39;a&#39;: 0.31909103654188875, &#39;y&#39;: 0, &#39;b&#39;: 0.2896579960615011, &#39;more_data&#39;: 0.1413170850245894}
+{&#39;x&#39;: 2, &#39;a&#39;: 0.31909103654188875, &#39;y&#39;: 1, &#39;b&#39;: 0.504754413563884, &#39;more_data&#39;: 0.11278947130653594}
+{&#39;x&#39;: 2, &#39;a&#39;: 0.31909103654188875, &#39;y&#39;: 2, &#39;b&#39;: 0.11376416027480363, &#39;more_data&#39;: 0.36808404705716624}
+{&#39;x&#39;: 2, &#39;a&#39;: 0.31909103654188875, &#39;y&#39;: 3, &#39;b&#39;: 0.676195605838824, &#39;more_data&#39;: 0.955245304534371}
+</pre></div></div>
+</div>
+</section>
+<section id="Combining-operators-and-more-complex-constructs">
+<h3>Combining operators and more complex constructs<a class="headerlink" href="#Combining-operators-and-more-complex-constructs" title="Permalink to this headline">¶</a></h3>
+<p>A not uncommon task in quantum circuits:</p>
+<ol class="arabic simple">
+<li><p>sweep some parameter. We’re interested in some response of the system on this parameter.</p></li>
+<li><p>Hovewer, changing this parameter changes an operation point of our sample. To deal with this we need to perform an auxiliary measurement, and based on its result we set some other parameter. (A familiar case: we increase a drive power that is expected to have some effect on a qubit. But after changing the power we need to first find the readout resonator frequency because of the changed Stark shift.)</p></li>
+<li><p>After this ‘calibration step’ we can now measure the response we’re actually looking for.</p></li>
+</ol>
+<p>Further, we want to record not only the data that is taken in the last step, but also the calibration data.</p>
+<p>All together this leads us to a measurement structure as below. As before, the building blocks are modular and relatively self-contained, and might be part of some package.</p>
+<p>The data this will produce is two records per sweep parameter (<code class="docutils literal notranslate"><span class="pre">x</span></code>, creatively): one that contains the calibration measurement and result, and one for the actual measurement.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@recording</span><span class="p">(</span>
+    <span class="n">independent</span><span class="p">(</span><span class="s1">&#39;readout_probe_points&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">),</span>
+    <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;readout_probe_response&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;readout_probe_points&#39;</span><span class="p">]),</span>
+    <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;readout_point&#39;</span><span class="p">)</span>  <span class="c1"># note: we don&#39;t make this dependent on readout_probe_points</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">calibrate_readout</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;An example for a readout calibration.&quot;&quot;&quot;</span>
+    <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c1"># some analysis of the calibration measurement</span>
+    <span class="k">return</span> <span class="n">pts</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">set_operation_point</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;setting the readout point to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># the actual measurement function accepts the argument `readout_point` which will be passed from the calibration.</span>
+<span class="nd">@recording</span><span class="p">(</span>
+    <span class="n">independent</span><span class="p">(</span><span class="s1">&#39;probe_frequency&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">),</span>
+    <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;probe_response&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;probe_frequency&#39;</span><span class="p">]),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">perform_measurement</span><span class="p">(</span><span class="n">readout_point</span><span class="p">):</span>
+    <span class="n">set_operation_point</span><span class="p">(</span><span class="n">readout_point</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">readout_point</span><span class="p">)</span>
+
+<span class="c1"># because of the way brackets are set here, we need to make a sweep out of the calibrate_readout</span>
+<span class="c1"># function. this is easily done with the &#39;once&#39; function, which creates a length-1 sweep with no additional</span>
+<span class="c1"># return data.</span>
+<span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="o">@</span> <span class="p">(</span><span class="n">once</span><span class="p">(</span><span class="n">calibrate_readout</span><span class="p">)</span> <span class="o">+</span> <span class="n">perform_measurement</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;probe_frequency&#39;: None,
+ &#39;probe_response&#39;: None,
+ &#39;readout_point&#39;: 11.284998339002213,
+ &#39;readout_probe_points&#39;: array([0. , 0.5, 1. ]),
+ &#39;readout_probe_response&#39;: array([ 1.12849983e+01,  1.37628561e-02, -1.65627537e+01]),
+ &#39;x&#39;: 0}
+setting the readout point to 11.284998339002213
+{&#39;probe_frequency&#39;: array([10, 11, 12]),
+ &#39;probe_response&#39;: array([12.02333575, 10.35975474, 12.11792401]),
+ &#39;readout_point&#39;: None,
+ &#39;readout_probe_points&#39;: None,
+ &#39;readout_probe_response&#39;: None,
+ &#39;x&#39;: 0}
+{&#39;probe_frequency&#39;: None,
+ &#39;probe_response&#39;: None,
+ &#39;readout_point&#39;: 19.138799706077503,
+ &#39;readout_probe_points&#39;: array([0. , 0.5, 1. ]),
+ &#39;readout_probe_response&#39;: array([ 19.13879971,  11.48703869, -10.75048573]),
+ &#39;x&#39;: 1}
+setting the readout point to 19.138799706077503
+{&#39;probe_frequency&#39;: array([10, 11, 12]),
+ &#39;probe_response&#39;: array([18.43368321, 19.96660532, 20.0550161 ]),
+ &#39;readout_point&#39;: None,
+ &#39;readout_probe_points&#39;: None,
+ &#39;readout_probe_response&#39;: None,
+ &#39;x&#39;: 1}
+{&#39;probe_frequency&#39;: None,
+ &#39;probe_response&#39;: None,
+ &#39;readout_point&#39;: 18.783996640868633,
+ &#39;readout_probe_points&#39;: array([0. , 0.5, 1. ]),
+ &#39;readout_probe_response&#39;: array([ 1.5156969 ,  6.83102294, 18.78399664]),
+ &#39;x&#39;: 2}
+setting the readout point to 18.783996640868633
+{&#39;probe_frequency&#39;: array([10, 11, 12]),
+ &#39;probe_response&#39;: array([19.01677099, 18.49530808, 17.55880304]),
+ &#39;readout_point&#39;: None,
+ &#39;readout_probe_points&#39;: None,
+ &#39;readout_probe_response&#39;: None,
+ &#39;x&#39;: 2}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pprint</span><span class="p">(</span><span class="n">sweep</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(x,
+ readout_probe_points,
+ readout_probe_response(x, readout_probe_points),
+ readout_point(x),
+ probe_frequency,
+ probe_response(x, probe_frequency))
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Looking-a-bit-deeper">
+<h2>Looking a bit deeper<a class="headerlink" href="#Looking-a-bit-deeper" title="Permalink to this headline">¶</a></h2>
+<section id="Annotating-objects-for-recording">
+<h3>Annotating objects for recording<a class="headerlink" href="#Annotating-objects-for-recording" title="Permalink to this headline">¶</a></h3>
+<p>These are just some snippets that show how we can annotate records and what the results are.</p>
+<p>Without record annotations sweeps still are executed, but no data is recorded:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sweep_object</span> <span class="o">=</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep_object</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{}
+{}
+{}
+</pre></div></div>
+</div>
+<p>The underlying object we use for declaring data returns is <code class="docutils literal notranslate"><span class="pre">DataSpec</span></code>. <code class="docutils literal notranslate"><span class="pre">ds</span></code> is just a shortcut that points to its constructor.</p>
+<p><code class="docutils literal notranslate"><span class="pre">independent</span></code> (or <code class="docutils literal notranslate"><span class="pre">indep</span></code>) is creates a DataSpec with <code class="docutils literal notranslate"><span class="pre">depends_on=None</span></code>, and <code class="docutils literal notranslate"><span class="pre">dependent</span></code> creates a DataSpec with <code class="docutils literal notranslate"><span class="pre">depends_on=[]</span></code>. If <code class="docutils literal notranslate"><span class="pre">depends_on</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, it will remain independent even when the annotated object is embedded in larger structures. If it is <code class="docutils literal notranslate"><span class="pre">[]</span></code> then more dependencies are added automatically.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># defining some example measurement functions without short-hand notations</span>
+
+<span class="nd">@recording</span><span class="p">(</span><span class="n">DataSpec</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="n">DataSpec</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">measure_stuff</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="nd">@recording</span><span class="p">(</span><span class="n">ds</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">set_stuff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">measure_stuff</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">set_stuff</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+({&#39;x&#39;: 1, &#39;y&#39;: array([-0.45867552])}, {&#39;a&#39;: 1})
+</pre></div></div>
+</div>
+<p>Generators can also be annotated to produce data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@recording</span><span class="p">(</span><span class="n">ds</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">make_sequence</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">make_sequence</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;a&#39;: 0}
+{&#39;a&#39;: 1}
+{&#39;a&#39;: 2}
+</pre></div></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">record_as</span></code> is a practical way of annotating records just before executing, independently of an earlier function definition. This works with functions and generators as well.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_some_data</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">record_as</span><span class="p">(</span><span class="n">get_some_data</span><span class="p">,</span> <span class="n">ds</span><span class="p">(</span><span class="s1">&#39;random_var&#39;</span><span class="p">))(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;random_var&#39;: array([ 1.71492645, -0.2915872 ,  0.94294788])}
+</pre></div></div>
+</div>
+<p>record also provides a simple short hand for labelling regular iterables and iterators: it automatically removes surplus values, and always returns values for all specified data, even if the annotated object does not return in (missing values will be <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">record_as</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)),</span> <span class="n">ds</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">record_as</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)),</span> <span class="n">ds</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="n">ds</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">record_as</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">ds</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="n">ds</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;x&#39;: 0.0}
+{&#39;x&#39;: 0.2}
+{&#39;x&#39;: 0.4}
+{&#39;x&#39;: 0.6000000000000001}
+{&#39;x&#39;: 0.8}
+{&#39;x&#39;: 1.0}
+{&#39;x&#39;: 0.0, &#39;y&#39;: 0}
+{&#39;x&#39;: 0.2, &#39;y&#39;: 1}
+{&#39;x&#39;: 0.4, &#39;y&#39;: 2}
+{&#39;x&#39;: 0.6000000000000001, &#39;y&#39;: 3}
+{&#39;x&#39;: 0.8, &#39;y&#39;: 4}
+{&#39;x&#39;: 1.0, &#39;y&#39;: 5}
+{&#39;x&#39;: 0.0, &#39;y&#39;: None}
+{&#39;x&#39;: 0.2, &#39;y&#39;: None}
+{&#39;x&#39;: 0.4, &#39;y&#39;: None}
+{&#39;x&#39;: 0.6000000000000001, &#39;y&#39;: None}
+{&#39;x&#39;: 0.8, &#39;y&#39;: None}
+{&#39;x&#39;: 1.0, &#39;y&#39;: None}
+</pre></div></div>
+</div>
+</section>
+<section id="Passing-parameters-in-a-sweep">
+<h3>Passing parameters in a sweep<a class="headerlink" href="#Passing-parameters-in-a-sweep" title="Permalink to this headline">¶</a></h3>
+<p>Everything that is generated by functions (or pointers and sweeps) can in principle be passed on to subsequently executed elements.</p>
+<p>When there’s no record annotations arguments may still be passed as positional arguments:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">test</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(0,) {}
+{}
+(1,) {}
+{}
+(2,) {}
+{}
+</pre></div></div>
+</div>
+<p>Because it would get too confusing otherwise, positional arguments only get passed originating from a pointer to all actions in a single sweep. In the following example the two <code class="docutils literal notranslate"><span class="pre">test</span></code> functions in the first sweep are passed the same integer, whereas the function in the second sweep is only receiving (<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">True</span></code>) or (<code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code>). Note that the return of <code class="docutils literal notranslate"><span class="pre">test</span></code> is not passed to any other object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">test</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span> <span class="o">*</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]),</span> <span class="n">test</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(0,) {}
+(0,) {}
+(&#39;x&#39;, True) {}
+{}
+(1,) {}
+(1,) {}
+(&#39;y&#39;, False) {}
+{}
+(2,) {}
+(2,) {}
+</pre></div></div>
+</div>
+<p>In the previous example, <code class="docutils literal notranslate"><span class="pre">test</span></code> received any arguments passed to it because its signature included variational positional arguments (<code class="docutils literal notranslate"><span class="pre">*args</span></code>). The situation changes when this is not the case. The function is receiving only arguments that it can accept.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">test_2</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">Sweep</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]),</span> <span class="n">test_2</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1
+2
+</pre></div></div>
+</div>
+<p>We are more flexible when we use keyword arguments. Here, the rule is:</p>
+<ol class="arabic simple">
+<li><p>All records produced are passed to all subsequent functions in the sweep (even across different sub-sweeps!) that accept the keyword.</p></li>
+<li><p>If a pointer yields non-annotated values, these are still used as positional arguments, but only where accepted, and with higher priority given to keywords.</p></li>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">lambda</span></code> and <code class="docutils literal notranslate"><span class="pre">record_as</span></code> allow pretty simple translation of records and argument names to avoid conflicts.</p></li>
+<li><p>some elementary control over passing behavior is provided by <code class="docutils literal notranslate"><span class="pre">Sweep.pass_on_returns</span></code> and <code class="docutils literal notranslate"><span class="pre">Sweep.pass_on_none</span></code>.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Sweep.pass_on_returns</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, nothing will be passed on.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Sweep.pass_on_none</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>. If set to <code class="docutils literal notranslate"><span class="pre">False</span></code> the behavior is such that records that are <code class="docutils literal notranslate"><span class="pre">None</span></code> will not be passed on further. (Because <code class="docutils literal notranslate"><span class="pre">None</span></code> is typically indicating that function did not return anything as data even though a record was declard using <code class="docutils literal notranslate"><span class="pre">recording</span></code> or <code class="docutils literal notranslate"><span class="pre">record_as</span></code>).</p></li>
+<li><p>Note: At the moment we can set those only globally using the class attribute; a likely update in the future.</p></li>
+</ol>
+</li>
+</ol>
+<p>Some examples:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;my three arguments:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+<span class="k">def</span> <span class="nf">print_all_args</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;arguments at the end of the line:&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">test</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;yy&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;zz&#39;</span><span class="p">)))</span>
+    <span class="o">@</span> <span class="n">print_all_args</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;yy&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;zz&#39;</span><span class="p">)))</span>
+    <span class="o">@</span> <span class="n">record_as</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">:</span> <span class="n">test</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;some&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;different&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">))</span>
+    <span class="o">@</span> <span class="n">print_all_args</span>
+    <span class="o">+</span> <span class="n">print_all_args</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my three arguments: 0 None 5
+data: {&#39;x&#39;: 0}
+my three arguments: 1 None 5
+data: {&#39;x&#39;: 1}
+my three arguments: 2 None 5
+data: {&#39;x&#39;: 2}
+
+my three arguments: None 0 5
+arguments at the end of the line: () {&#39;y&#39;: 0, &#39;yy&#39;: 0, &#39;zz&#39;: 5}
+data: {&#39;y&#39;: 0, &#39;xx&#39;: None, &#39;yy&#39;: 0, &#39;zz&#39;: 5}
+my three arguments: None 1 5
+arguments at the end of the line: () {&#39;y&#39;: 1, &#39;yy&#39;: 1, &#39;zz&#39;: 5}
+data: {&#39;y&#39;: 1, &#39;xx&#39;: None, &#39;yy&#39;: 1, &#39;zz&#39;: 5}
+my three arguments: None 2 5
+arguments at the end of the line: () {&#39;y&#39;: 2, &#39;yy&#39;: 2, &#39;zz&#39;: 5}
+data: {&#39;y&#39;: 2, &#39;xx&#39;: None, &#39;yy&#39;: 2, &#39;zz&#39;: 5}
+
+my three arguments: None 0 5
+my three arguments: None 0 5
+arguments at the end of the line: () {&#39;y&#39;: 0, &#39;yy&#39;: 0, &#39;zz&#39;: 5, &#39;different&#39;: 0, &#39;names&#39;: 5}
+data: {&#39;y&#39;: 0, &#39;xx&#39;: None, &#39;yy&#39;: 0, &#39;zz&#39;: 5, &#39;some&#39;: None, &#39;different&#39;: 0, &#39;names&#39;: 5}
+my three arguments: None 1 5
+my three arguments: None 1 5
+arguments at the end of the line: () {&#39;y&#39;: 1, &#39;yy&#39;: 1, &#39;zz&#39;: 5, &#39;different&#39;: 1, &#39;names&#39;: 5}
+data: {&#39;y&#39;: 1, &#39;xx&#39;: None, &#39;yy&#39;: 1, &#39;zz&#39;: 5, &#39;some&#39;: None, &#39;different&#39;: 1, &#39;names&#39;: 5}
+my three arguments: None 2 5
+my three arguments: None 2 5
+arguments at the end of the line: () {&#39;y&#39;: 2, &#39;yy&#39;: 2, &#39;zz&#39;: 5, &#39;different&#39;: 2, &#39;names&#39;: 5}
+data: {&#39;y&#39;: 2, &#39;xx&#39;: None, &#39;yy&#39;: 2, &#39;zz&#39;: 5, &#39;some&#39;: None, &#39;different&#39;: 2, &#39;names&#39;: 5}
+arguments at the end of the line: () {&#39;y&#39;: 2, &#39;yy&#39;: 2, &#39;zz&#39;: 5, &#39;different&#39;: 2, &#39;names&#39;: 5}
+data: {&#39;y&#39;: None, &#39;xx&#39;: None, &#39;yy&#39;: None, &#39;zz&#39;: None, &#39;some&#39;: None, &#39;different&#39;: None, &#39;names&#39;: None}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Sweep</span><span class="o">.</span><span class="n">pass_on_returns</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;yy&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;zz&#39;</span><span class="p">)))</span>
+    <span class="o">@</span> <span class="n">print_all_args</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># setting back to default</span>
+<span class="n">Sweep</span><span class="o">.</span><span class="n">pass_on_returns</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my three arguments: None None 5
+arguments at the end of the line: () {}
+data: {&#39;y&#39;: 0, &#39;xx&#39;: None, &#39;yy&#39;: None, &#39;zz&#39;: 5}
+my three arguments: None None 5
+arguments at the end of the line: () {}
+data: {&#39;y&#39;: 1, &#39;xx&#39;: None, &#39;yy&#39;: None, &#39;zz&#39;: 5}
+my three arguments: None None 5
+arguments at the end of the line: () {}
+data: {&#39;y&#39;: 2, &#39;xx&#39;: None, &#39;yy&#39;: None, &#39;zz&#39;: 5}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Sweep</span><span class="o">.</span><span class="n">pass_on_none</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">sweep</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sweep_parameter</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">record_as</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;yy&#39;</span><span class="p">),</span> <span class="n">dependent</span><span class="p">(</span><span class="s1">&#39;zz&#39;</span><span class="p">)))</span>
+    <span class="o">@</span> <span class="n">print_all_args</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sweep</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># setting back to default</span>
+<span class="n">Sweep</span><span class="o">.</span><span class="n">pass_on_none</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+my three arguments: None 0 5
+arguments at the end of the line: (None,) {&#39;y&#39;: 0, &#39;xx&#39;: None, &#39;yy&#39;: 0, &#39;zz&#39;: 5}
+data: {&#39;y&#39;: 0, &#39;xx&#39;: None, &#39;yy&#39;: 0, &#39;zz&#39;: 5}
+my three arguments: None 1 5
+arguments at the end of the line: (None,) {&#39;y&#39;: 1, &#39;xx&#39;: None, &#39;yy&#39;: 1, &#39;zz&#39;: 5}
+data: {&#39;y&#39;: 1, &#39;xx&#39;: None, &#39;yy&#39;: 1, &#39;zz&#39;: 5}
+my three arguments: None 2 5
+arguments at the end of the line: (None,) {&#39;y&#39;: 2, &#39;xx&#39;: None, &#39;yy&#39;: 2, &#39;zz&#39;: 5}
+data: {&#39;y&#39;: 2, &#39;xx&#39;: None, &#39;yy&#39;: 2, &#39;zz&#39;: 5}
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="structured_OPX_implementation.html" class="btn btn-neutral float-right" title="How to Use OPX Sweeping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../general/dummy_measurement_without_server/measurement_notebook.html" class="btn btn-neutral float-left" title="Dummy Measurement Without Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

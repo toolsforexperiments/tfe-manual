@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>labcore.measurement.record &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Index Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>labcore.measurement.record</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for labcore.measurement.record</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> \
+    <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">update_wrapper</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">Parameter</span> <span class="k">as</span> <span class="n">QCParameter</span>
+    <span class="n">QCODES_PRESENT</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">QCParameter</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">QCODES_PRESENT</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">map_input_to_signature</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DataType"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.DataType">[docs]</a><span class="k">class</span> <span class="nc">DataType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Valid options for data types used in :class:`DataSpec`&quot;&quot;&quot;</span>
+    <span class="c1">#: scalar (single-valued) data. typically numeric, but also bool, etc.</span>
+    <span class="n">scalar</span> <span class="o">=</span> <span class="s1">&#39;scalar&#39;</span>
+    <span class="c1">#: multi-valued data. typically numpy-arrays.</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="s1">&#39;array&#39;</span></div>
+
+
+<div class="viewcode-block" id="DataSpec"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.DataSpec">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DataSpec</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Specification for data parameters to be recorded.&quot;&quot;&quot;</span>
+    <span class="c1">#: name of the parameter</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="c1">#: dependencies. if ``None``, it is independent.</span>
+    <span class="n">depends_on</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: information about data format</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataType</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;scalar&#39;</span>
+    <span class="c1">#: physical unit of the data</span>
+    <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">DataType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataSpec.copy"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.DataSpec.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DataSpec&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;return a deep copy of the DataSpec instance.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">depends_on</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">depends_on</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">depends_on</span><span class="p">))</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<span class="c1">#: shorter notation for constructing DataSpec objects</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">DataSpec</span>
+<span class="c1">#: The type for creating a ds from a tuple (i.e., what can be passed to the</span>
+<span class="c1">#: constructor of :class:`.DataSpec`)</span>
+<span class="n">DataSpecFromTupleType</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="nb">str</span><span class="p">,</span>
+                              <span class="nb">str</span><span class="p">]</span>
+<span class="c1">#: The type for creating a ds from a dict (i.e., what can be passed to the</span>
+<span class="c1">#: constructor of :class:`.DataSpec` as keywords)</span>
+<span class="n">DataSpecFromDictType</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]]</span>
+<span class="c1">#: The type from which we can create a DataSpec.</span>
+<span class="n">DataSpecCreationType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DataSpecFromTupleType</span><span class="p">,</span>
+                             <span class="n">DataSpecFromDictType</span><span class="p">,</span> <span class="n">DataSpec</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="data_specs_label"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.data_specs_label">[docs]</a><span class="k">def</span> <span class="nf">data_specs_label</span><span class="p">(</span><span class="o">*</span><span class="n">dspecs</span><span class="p">:</span> <span class="n">DataSpec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Create a readable label for multiple data specs.</span>
+
+<span class="sd">    Format:</span>
+<span class="sd">        {data_name_1 (dep_1, dep_2), data_name_2 (dep_3), etc.}</span>
+
+<span class="sd">    :param dspecs: data specs as positional arguments.</span>
+<span class="sd">    :return: label as string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s2">&quot;{&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dspecs</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;}&quot;</span></div>
+
+
+<div class="viewcode-block" id="make_data_spec"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.make_data_spec">[docs]</a><span class="k">def</span> <span class="nf">make_data_spec</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">DataSpecCreationType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataSpec</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Instantiate a DataSpec object.</span>
+
+<span class="sd">    :param value:</span>
+<span class="sd">        May be one of the following with the following behavior:</span>
+
+<span class="sd">            - A string create a dependent with name given by the string</span>
+<span class="sd">            - A tuple of values that can be used to pass to the constructor of :class:`.DataSpec`</span>
+<span class="sd">            - A dictionary entries of which will be passed as keyword arguments to the constructor of :class:`.DataSpec`</span>
+<span class="sd">            - A :class:`.DataSpec` instance</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dependent</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="n">DataSpec</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DataSpec</span><span class="p">(</span><span class="o">**</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">DataSpec</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot create DataSpec from </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_data_specs"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.make_data_specs">[docs]</a><span class="k">def</span> <span class="nf">make_data_specs</span><span class="p">(</span><span class="o">*</span><span class="n">specs</span><span class="p">:</span> <span class="n">DataSpecCreationType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">DataSpec</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Create a tuple of DataSpec instances.</span>
+
+<span class="sd">    :param specs: will be passed individually to :func:`.make_data_spec`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">specs</span><span class="p">:</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">make_data_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">))</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="combine_data_specs"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.combine_data_specs">[docs]</a><span class="k">def</span> <span class="nf">combine_data_specs</span><span class="p">(</span><span class="o">*</span><span class="n">specs</span><span class="p">:</span> <span class="n">DataSpec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">DataSpec</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Create a tuple of DataSpecs from the inputs. Removes duplicates.&quot;&quot;&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">spec_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">specs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">spec_names</span><span class="p">:</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="n">spec_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="independent"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.independent">[docs]</a><span class="k">def</span> <span class="nf">independent</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;scalar&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataSpec</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Create a the spec for an independent parameter.</span>
+<span class="sd">    All arguments are forwarded to the :class:`.DataSpec` constructor.</span>
+<span class="sd">    ``depends_on`` is set to ``None``.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">DataSpec</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+
+
+<span class="n">indep</span> <span class="o">=</span> <span class="n">independent</span>
+
+
+<div class="viewcode-block" id="dependent"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.dependent">[docs]</a><span class="k">def</span> <span class="nf">dependent</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">depends_on</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+              <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;scalar&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a the spec for a dependent parameter.</span>
+<span class="sd">    All arguments are forwarded to the :class:`.DataSpec` constructor.</span>
+<span class="sd">    ``depends_on`` may not be set to ``None``.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">depends_on</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;depends_on&#39; may not be None for a dependent.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">DataSpec</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">,</span> <span class="n">depends_on</span><span class="o">=</span><span class="n">depends_on</span><span class="p">)</span></div>
+
+
+<span class="n">dep</span> <span class="o">=</span> <span class="n">dependent</span>
+
+
+<div class="viewcode-block" id="recording"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.recording">[docs]</a><span class="k">def</span> <span class="nf">recording</span><span class="p">(</span><span class="o">*</span><span class="n">data_specs</span><span class="p">:</span> <span class="n">DataSpecCreationType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns a decorator that allows adding data parameter specs to a</span>
+<span class="sd">    function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">FunctionToRecords</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">make_data_specs</span><span class="p">(</span><span class="o">*</span><span class="n">data_specs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+<div class="viewcode-block" id="record_as"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.record_as">[docs]</a><span class="k">def</span> <span class="nf">record_as</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">],</span>
+              <span class="o">*</span><span class="n">specs</span><span class="p">:</span> <span class="n">DataSpecCreationType</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Annotate produced data as records.</span>
+
+<span class="sd">    :param obj: a function that returns data or an iterable/iterator that</span>
+<span class="sd">        produces data at each iteration step</span>
+<span class="sd">    :param specs: specs for the data produced (see :func:`.make_data_specs`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">specs</span> <span class="o">=</span> <span class="n">make_data_specs</span><span class="p">(</span><span class="o">*</span><span class="n">specs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Callable</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">recording</span><span class="p">(</span><span class="o">*</span><span class="n">specs</span><span class="p">)(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">IteratorToRecords</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">specs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="produces_record"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.produces_record">[docs]</a><span class="k">def</span> <span class="nf">produces_record</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Check if `obj` is annotated to generate records.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;get_data_specs&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<span class="k">def</span> <span class="nf">_to_record</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">],</span>
+               <span class="n">data_specs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">DataSpec</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Convert data to a record using the provided DataSpecs&quot;&quot;&quot;</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">data_specs</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">IteratorToRecords</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">*</span><span class="n">data_specs</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_specs</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ret</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="n">ret</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">ret</span>
+
+
+<div class="viewcode-block" id="IteratorToRecords"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.IteratorToRecords">[docs]</a><span class="k">class</span> <span class="nc">IteratorToRecords</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A wrapper that converts the iteration values to records.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
+                 <span class="o">*</span><span class="n">data_specs</span><span class="p">:</span> <span class="n">DataSpecCreationType</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span> <span class="o">=</span> <span class="n">iterable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_specs</span> <span class="o">=</span> <span class="n">make_data_specs</span><span class="p">(</span><span class="o">*</span><span class="n">data_specs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_specs</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">_to_record</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_specs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">.sweep</span> <span class="kn">import</span> <span class="n">CombineSweeps</span>
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="p">,</span> <span class="n">CombineSweeps</span><span class="p">):</span>
+            <span class="n">dnames</span> <span class="o">=</span> <span class="n">data_specs_label</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; as </span><span class="si">{</span><span class="n">dnames</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="FunctionToRecords"><a class="viewcode-back" href="../../../api/labcore/measurement/record.html#labcore.measurement.record.FunctionToRecords">[docs]</a><span class="k">class</span> <span class="nc">FunctionToRecords</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A wrapper that converts a function return to a record.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">data_specs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_specs</span> <span class="o">=</span> <span class="n">make_data_specs</span><span class="p">(</span><span class="o">*</span><span class="n">data_specs</span><span class="p">)</span>
+        <span class="n">update_wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_specs</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">func_args</span><span class="p">,</span> <span class="n">func_kwargs</span> <span class="o">=</span> <span class="n">map_input_to_signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_sig</span><span class="p">,</span>
+                                                        <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">func_args</span><span class="p">,</span> <span class="o">**</span><span class="n">func_kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_to_record</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data_specs</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dnames</span> <span class="o">=</span> <span class="n">data_specs_label</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">data_specs</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_sig</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; as </span><span class="si">{</span><span class="n">dnames</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<span class="c1"># TODO: support for qcodes parameters as actions. should automatically</span>
+<span class="c1">#   inherit shapes, dependencies (for ParameterWithSetPoints, for example)</span>
+<span class="c1">#   needs a function to make data specs from parameters (incl some user</span>
+<span class="c1">#   customization, like setting to array for regular parameters)</span>
+<span class="k">def</span> <span class="nf">get_parameter</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="n">QCParameter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">QCODES_PRESENT</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;qcodes not found.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">record_as</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">dependent</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">unit</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

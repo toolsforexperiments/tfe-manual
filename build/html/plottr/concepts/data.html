@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Data formats &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Nodes and Flowcharts" href="nodes.html" />
+    <link rel="prev" title="Elementary concepts" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Plottr’s Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Elementary concepts</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data formats</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#relevant-data-classes">Relevant data classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nodes.html">Nodes and Flowcharts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nodes/index.html">Predefined nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotnode.html">Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Index Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Plottr’s Documentation</a> &raquo;</li>
+        
+          <li><a href="index.html">Elementary concepts</a> &raquo;</li>
+        
+      <li>Data formats</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/plottr/concepts/data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="data-formats">
+<h1>Data formats<a class="headerlink" href="#data-formats" title="Permalink to this headline">¶</a></h1>
+<p>The main format we’re using within plottr is the <code class="docutils literal notranslate"><span class="pre">DataDict</span></code>. While most of the actual numeric data will typically live in numpy arrays (or lists, or similar), they don’t typically capture easily arbitrary metadata and relationships between arrays. Say, for example, we have some data <code class="docutils literal notranslate"><span class="pre">z</span></code> that depends on two other variables, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. This information has be stored somewhere, and numpy doesn’t offer readily a solution here. There are various extensions, for example <a class="reference external" href="http://xarray.pydata.org">xarray</a> or the <a class="reference external" href="https://scipy-cookbook.readthedocs.io/items/MetaArray.html">MetaArray class</a>. Those however typically have a grid format in mind, which we do not want to impose. Instead, we use a wrapper around the python dictionary that contains all the required meta information to infer the relevant relationships, and that uses numpy arrays internally to store the numeric data. Additionally we can store any other arbitrary meta data.</p>
+<p>A DataDict container (a <cite>dataset</cite>) can contain multiple <cite>data fields</cite> (or variables), that have values and can contain their own meta information. Importantly, we distinct between independent fields (the <cite>axes</cite>) and dependent fields (the <cite>data</cite>).</p>
+<p>Despite the naming, <cite>axes</cite> is not meant to imply that the <cite>data</cite> have to have a certain shape (but the degree to which this is true depends on the class used). A list of classes for different shapes of data can be found below.</p>
+<p>The basic structure of data conceptually looks like this (we inherit from <cite>dict</cite>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;data_1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;axes&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ax1&#39;</span><span class="p">,</span> <span class="s1">&#39;ax2&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;unit&#39;</span> <span class="p">:</span> <span class="s1">&#39;some unit&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;values&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="o">...</span> <span class="p">],</span>
+        <span class="s1">&#39;__meta__&#39;</span> <span class="p">:</span> <span class="s1">&#39;This is very important data&#39;</span><span class="p">,</span>
+        <span class="o">...</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;ax1&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;axes&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;unit&#39;</span> <span class="p">:</span> <span class="s1">&#39;some other unit&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;values&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="o">...</span> <span class="p">],</span>
+        <span class="o">...</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;ax2&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;axes&#39;</span> <span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;unit&#39;</span> <span class="p">:</span> <span class="s1">&#39;a third unit&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;values&#39;</span> <span class="p">:</span> <span class="p">[</span> <span class="o">...</span> <span class="p">],</span>
+        <span class="o">...</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;__globalmeta__&#39;</span> <span class="p">:</span> <span class="s1">&#39;some information about this data set&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__moremeta__&#39;</span> <span class="p">:</span> <span class="mi">1234</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case we have one dependent variable, <code class="docutils literal notranslate"><span class="pre">data_1</span></code>, that depends on two axes, <code class="docutils literal notranslate"><span class="pre">ax1</span></code> and <code class="docutils literal notranslate"><span class="pre">ax2</span></code>. This concept is restricted only in the following way:</p>
+<ul class="simple">
+<li><p>a dependent can depend on any number of independents</p></li>
+<li><p>an independent cannot depend on other fields itself</p></li>
+<li><p>any field that does not depend on another, is treated as an axis</p></li>
+</ul>
+<p>Note that meta information is contained in entries whose keys start and end with double underscores. Both the DataDict itself, as well as each field can contain meta information.</p>
+<p>In the most basic implementation, the only restriction on the data values is that they need to be contained in a sequence (typically as list, or numpy array), and that the length of all values in the data set (the number of <cite>records</cite>) must be equal. Note that this does not preclude nested sequences!</p>
+<section id="relevant-data-classes">
+<h2>Relevant data classes<a class="headerlink" href="#relevant-data-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">DataDictBase</dt>
+<dd class="field-odd"><p>The main base class. Only checks for correct dependencies. Any
+requirements on data structure is left to the inheriting classes. The class contains methods for easy access to data and metadata.</p>
+</dd>
+<dt class="field-even">DataDict</dt>
+<dd class="field-even"><p>The only requirement for valid data is that the number of records is the
+same for all data fields. Contains some tools for expansion of data.</p>
+</dd>
+<dt class="field-odd">MeshgridDataDict</dt>
+<dd class="field-odd"><p>For data that lives on a grid (not necessarily regular).</p>
+</dd>
+</dl>
+<p>For more information, see the API documentation.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="nodes.html" class="btn btn-neutral float-right" title="Nodes and Flowcharts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Elementary concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

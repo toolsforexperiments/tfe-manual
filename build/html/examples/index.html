@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Examples and Guides &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tools for Experiments Overview" href="general/toolsforexperiments_overview/tfe_overview.html" />
+    <link rel="prev" title="Data format: DataDict" href="../api/plottr/data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Index Page</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples and Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general">General</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html">Tools for Experiments Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/notebook_out.html">Files Created by “Tools for Experiments Overview”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html">Dummy Measurement Without Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#labcore">Labcore</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html">Sweep Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/structured_OPX_implementation.html">How to Use OPX Sweeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plotrr">Plotrr</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html">Basic Operation of DDH5 and Benchmarking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Inferring%20grids.html">Inferring Grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html">Live Plotting Qcodes Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Simple%20Live%20plotting%20example%20with%20DDH5.html">Simple Live plotting example with DDH5</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Examples and Guides</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="examples-and-guides">
+<h1>Examples and Guides<a class="headerlink" href="#examples-and-guides" title="Permalink to this headline">¶</a></h1>
+<p>Here are some examples and guides on how to use the tools for experiments tools:</p>
+<section id="general">
+<h2>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html">Tools for Experiments Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Imports">Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#The-instrument-server">The instrument server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Parameter-manager">Parameter manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Adding-instruments-to-the-server">Adding instruments to the server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Using-the-parameter-manager-in-measurements">Using the parameter manager in measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Saving-and-recalling-the-state-of-the-setup">Saving and recalling the state of the setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Logger-and-Dashboard">Logger and Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Plottr:-data-management-and-inspection">Plottr: data management and inspection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#General-introduction">General introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Simple-Example-on-how-to-save-data">Simple Example on how to save data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#How-to-open-and-plot-data.">How to open and plot data.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#How-to-view-real-time-data.">How to view real time data.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Nodes-and-Flowcharts">Nodes and Flowcharts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Labcore:-tools-for-increasing-efficiency.">Labcore: tools for increasing efficiency.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#What-is-a-sweep.">What is a sweep.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#How-to-construct-and-run-a-simple-sweep.">How to construct and run a simple sweep.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Constructing-a-more-complicated-sweep.">Constructing a more complicated sweep.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/toolsforexperiments_overview/tfe_overview.html#Example-using-sweep-and-saving-data.">Example using sweep and saving data.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general/toolsforexperiments_overview/notebook_out.html">Files Created by “Tools for Experiments Overview”</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/notebook_out.html#parameters-json">Parameters.json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/toolsforexperiments_overview/notebook_out.html#parameters-with-units-json">parameters-with-units.json</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html">Dummy Measurement Without Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#README">README</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Initialization">Initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Create-instruments">Create instruments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Example:-Flux-tuning-a-resonator">Example: Flux tuning a resonator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Measurement">Measurement</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Live-plotting">Live plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="general/dummy_measurement_without_server/measurement_notebook.html#Inspecting-the-data">Inspecting the data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="labcore">
+<h2>Labcore<a class="headerlink" href="#labcore" title="Permalink to this headline">¶</a></h2>
+<p>This folder contains examples and guides of Labcore.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="labcore/Introduction_to_sweeping.html">Sweep Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Init">Init</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Intro">Intro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Main-requirements-for-sweeps">Main requirements for sweeps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Jumping-right-in">Jumping right in</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#A-prototypical,-slightly-non-trivial-measurement-protocol">A prototypical, slightly non-trivial measurement protocol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#A-QCoDeS-parameter-sweep">A QCoDeS parameter sweep</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Constructing-single-sweeps">Constructing single sweeps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Specifying-options-before-executing-a-sweep">Specifying options before executing a sweep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Appending">Appending</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Multiplying">Multiplying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Nesting-sweeps">Nesting sweeps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Combining-operators-and-more-complex-constructs">Combining operators and more complex constructs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Looking-a-bit-deeper">Looking a bit deeper</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Annotating-objects-for-recording">Annotating objects for recording</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labcore/Introduction_to_sweeping.html#Passing-parameters-in-a-sweep">Passing parameters in a sweep</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="labcore/structured_OPX_implementation.html">How to Use OPX Sweeping</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#Imports">Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#Base-Decorator">Base Decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#Raw-Value-DataSpec">Raw Value DataSpec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#Specific-OPX-Implementation">Specific OPX Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#Proposal-for-Base-Running-and-Saving">Proposal for Base Running and Saving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#QUA-experiment-with-implemented-decorator">QUA experiment with implemented decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="labcore/structured_OPX_implementation.html#Notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="plotrr">
+<h2>Plotrr<a class="headerlink" href="#plotrr" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html">Basic Operation of DDH5 and Benchmarking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html#Simple-timing-for-writing/reading-a-datadict">Simple timing for writing/reading a datadict</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html#Write">Write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html#Read-back">Read back</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html#Appending-row-by-row">Appending row by row</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html#Bare-HDF5-benchmarking">Bare HDF5 benchmarking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Basic%20operation%20of%20DDH5%20and%20benchmarking.html#appending-row-by-row,-resize-every-time">appending row by row, resize every time</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plottr/Inferring%20grids.html">Inferring Grids</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Inferring%20grids.html#The-problem:-inferring-grids">The problem: inferring grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Inferring%20grids.html#Setting-up">Setting up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Inferring%20grids.html#Inferring-grids-from-sweep-directions">Inferring grids from sweep directions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Inferring%20grids.html#Irregular-grids">Irregular grids</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Inferring%20grids.html#Noise">Noise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Inferring%20grids.html#Adaptive-measurements">Adaptive measurements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Inferring%20grids.html#Incomplete-data">Incomplete data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html">Live Plotting Qcodes Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#Introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#Basic-notebook-setup">Basic notebook setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#Launching-inspectr">Launching inspectr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#Dummy-experiments">Dummy experiments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#Qcodes-imports-(and-other-relevant-stuff)">Qcodes imports (and other relevant stuff)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#A-very-simple-1D-sweep">A very simple 1D sweep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#A-very-simple-2D-sweep">A very simple 2D sweep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#A-simple-2D-sweep,-with-1D-in-‘hardware’">A simple 2D sweep, with 1D in ‘hardware’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plottr/Live%20plotting%20qcodes%20data.html#Complex-data">Complex data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plottr/Simple%20Live%20plotting%20example%20with%20DDH5.html">Simple Live plotting example with DDH5</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="general/toolsforexperiments_overview/tfe_overview.html" class="btn btn-neutral float-right" title="Tools for Experiments Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../api/plottr/data.html" class="btn btn-neutral float-left" title="Data format: DataDict" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>instrumentserver.params &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Index Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>instrumentserver.params</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for instrumentserver.params</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">unique</span><span class="p">,</span> <span class="n">auto</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">qcodes.instrument.base</span> <span class="kn">import</span> <span class="n">InstrumentBase</span>
+<span class="kn">from</span> <span class="nn">qcodes.utils</span> <span class="kn">import</span> <span class="n">validators</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">serialize</span>
+<span class="kn">from</span> <span class="nn">.server.core</span> <span class="kn">import</span> <span class="n">ParameterBluePrint</span><span class="p">,</span> <span class="n">bluePrintFromParameter</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ParameterTypes"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterTypes">[docs]</a><span class="nd">@unique</span>
+<span class="k">class</span> <span class="nc">ParameterTypes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="nb">any</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">numeric</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">integer</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="nb">bool</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="nb">complex</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span></div>
+
+
+<span class="n">parameterTypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">ParameterTypes</span><span class="o">.</span><span class="n">any</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Any&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;validatorType&#39;</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">Anything</span><span class="p">},</span>
+    <span class="n">ParameterTypes</span><span class="o">.</span><span class="n">numeric</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Numeric&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;validatorType&#39;</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">Numbers</span><span class="p">},</span>
+    <span class="n">ParameterTypes</span><span class="o">.</span><span class="n">integer</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Integer&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;validatorType&#39;</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">Ints</span><span class="p">},</span>
+    <span class="n">ParameterTypes</span><span class="o">.</span><span class="n">string</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;String&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;validatorType&#39;</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">Strings</span><span class="p">},</span>
+    <span class="n">ParameterTypes</span><span class="o">.</span><span class="n">bool</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Boolean&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;validatorType&#39;</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">Bool</span><span class="p">},</span>
+    <span class="n">ParameterTypes</span><span class="o">.</span><span class="n">complex</span><span class="p">:</span>
+        <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Complex&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;validatorType&#39;</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">ComplexNumbers</span><span class="p">},</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">paramTypeFromVals</span><span class="p">(</span><span class="n">vals</span><span class="p">:</span> <span class="n">validators</span><span class="o">.</span><span class="n">Validator</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ParameterTypes</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">vals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">validators</span><span class="o">.</span><span class="n">Anything</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parameterTypes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;validatorType&#39;</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="n">k</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">paramTypeFromName</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ParameterTypes</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">parameterTypes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="ParameterManager"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager">[docs]</a><span class="k">class</span> <span class="nc">ParameterManager</span><span class="p">(</span><span class="n">InstrumentBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A virtual instrument that acts as a manager for a collection of</span>
+<span class="sd">    arbitrary parameters and groups of parameters.</span>
+
+<span class="sd">    Allows extra-easy on-the-fly addition/removal of new parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: method to instantiate entirely from paramDict</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="c1">#: default location and name of the parameters save file.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_paramValuesFile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">&#39;parameter_manager_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">.json&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ParameterManager.createFromParamDict"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.createFromParamDict">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">createFromParamDict</span><span class="p">(</span><span class="n">paramDict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ParameterManager&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create a new ParameterManager instance from a paramDict.</span>
+
+<span class="sd">        :param paramDict: the paramDict object.</span>
+<span class="sd">        :param name: name of the instrument in the paramDict (each entry in the</span>
+<span class="sd">            paramDict starts with &lt;instrumentName&gt;.[...])</span>
+<span class="sd">        :returns: new ParameterManager instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_to_tree</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pm</span><span class="p">:</span> <span class="s1">&#39;ParameterManager&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">smn</span><span class="p">,</span> <span class="n">sm</span> <span class="ow">in</span> <span class="n">pm</span><span class="o">.</span><span class="n">submodules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">smn</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_to_tree</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pn</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pm</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">pn</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">to_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ParameterManager</span><span class="o">.</span><span class="n">_to_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Parameter</span><span class="p">:</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_parent</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">param_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="k">return</span> <span class="n">param</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">&#39; does not exist&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">create_parent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> \
+            <span class="o">-&gt;</span> <span class="s1">&#39;ParameterManager&#39;</span><span class="p">:</span>
+
+        <span class="n">split_names</span> <span class="o">=</span> <span class="n">param_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">split_names</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">full_name</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;.</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">parent</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is a parameter, and cannot have child parameters.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">parent</span><span class="o">.</span><span class="n">submodules</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">create_parent</span><span class="p">:</span>
+                    <span class="n">parent</span><span class="o">.</span><span class="n">add_submodule</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ParameterManager</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1"> does not exist.&#39;</span><span class="p">)</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">submodules</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">parent</span>
+
+    <span class="k">def</span> <span class="nf">has_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="ParameterManager.add_parameter"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.add_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">add_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Add a parameter.</span>
+
+<span class="sd">        :param name: name of the parameter.</span>
+<span class="sd">            if the name contains `.`s, then an element before a dot is interpreted</span>
+<span class="sd">            as a submodule. multiple dots represent nested submodules. I.e., when</span>
+<span class="sd">            we supply ``foo.bar.foo2`` we have a top-level submodule ``foo``,</span>
+<span class="sd">            containing a submodule ``bar``, containing the parameter ``foo2``.</span>
+<span class="sd">            Submodules are generated on demand.</span>
+<span class="sd">        :param kw: Any keyword arguments will be passed on to</span>
+<span class="sd">            qcodes.Instrument.add_parameter, except:</span>
+<span class="sd">            - ``set_cmd`` is always set to ``None``</span>
+<span class="sd">            - ``parameter_class`` is ``qcodes.Parameter``</span>
+<span class="sd">            - ``vals`` defaults to ``qcodes.utils.validators.Anything()``.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;parameter_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Parameter</span>
+        <span class="k">if</span> <span class="s1">&#39;vals&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kw</span><span class="p">:</span>
+            <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;vals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">validators</span><span class="o">.</span><span class="n">Anything</span><span class="p">()</span>
+        <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;set_cmd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_parent</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">create_parent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parent</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">remove_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cleanup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_parent</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+        <span class="n">pname</span> <span class="o">=</span> <span class="n">param_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">parent</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">pname</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">cleanup</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove_empty_submodules</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ParameterManager.get"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ParameterManager.set"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">param_name</span><span class="p">)</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterManager.remove_empty_submodules"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.remove_empty_submodules">[docs]</a>    <span class="k">def</span> <span class="nf">remove_empty_submodules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;delete all empty submodules in the instrument.&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">submodules</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">def</span> <span class="nf">purge</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+            <span class="n">mark_for_deletion</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">parent</span><span class="o">.</span><span class="n">submodules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">purge</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+                    <span class="n">mark_for_deletion</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">mark_for_deletion</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">parent</span><span class="o">.</span><span class="n">submodules</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+        <span class="n">purge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterManager.parameter"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.parameter">[docs]</a>    <span class="k">def</span> <span class="nf">parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Parameter&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;get a parameter object from the manager.</span>
+
+<span class="sd">        :param name: the full name</span>
+<span class="sd">        :returns: the parameter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterManager.list"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.list">[docs]</a>    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;return a list of all parameters.&quot;&quot;&quot;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_tree</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">tolist</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">ret_</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">):</span>
+                    <span class="n">ret_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">ret_</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">tolist</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span>
+            <span class="k">return</span> <span class="n">ret_</span>
+
+        <span class="k">return</span> <span class="n">tolist</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterManager.fromFile"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.fromFile">[docs]</a>    <span class="k">def</span> <span class="nf">fromFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filePath</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">deleteMissing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;load parameters from a parameter json file</span>
+<span class="sd">        (see :mod:`.serialize`).</span>
+
+<span class="sd">        :param filePath: path to the json file. If ``None`` it looks in the instrument current location</span>
+<span class="sd">                         directory for a file called &quot;parametermanager_parameters.json&quot;</span>
+<span class="sd">        :param deleteMissing: if ``True``, delete parameters currently in the</span>
+<span class="sd">            ParameterManager that are not listed in the file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">filePath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">filePath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_paramValuesFile</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filePath</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">pd</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fromParamDict</span><span class="p">(</span><span class="n">pd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;parameter file not found, cannot load.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterManager.fromParamDict"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.fromParamDict">[docs]</a>    <span class="k">def</span> <span class="nf">fromParamDict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paramDict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+                      <span class="n">deleteMissing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;load parameters from a parameter dictionary (see :mod:`.serialize`).</span>
+
+<span class="sd">        :param paramDict: parameter dictionary</span>
+<span class="sd">        :param deleteMissing: if ``True``, delete parameters currently in the</span>
+<span class="sd">            ParameterManager that are not listed in the file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">serialize</span><span class="o">.</span><span class="n">validateParamDict</span><span class="p">(</span><span class="n">paramDict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">serialize</span><span class="o">.</span><span class="n">isSimpleFormat</span><span class="p">(</span><span class="n">paramDict</span><span class="p">):</span>
+            <span class="n">simple</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">simple</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">currentParams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+        <span class="n">fileParams</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">paramDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                      <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">pn</span> <span class="ow">in</span> <span class="n">fileParams</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">simple</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">paramDict</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">pn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">paramDict</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">pn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">paramDict</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">pn</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;unit&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_param</span><span class="p">(</span><span class="n">pn</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">(</span><span class="n">pn</span><span class="p">)(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">(</span><span class="n">pn</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">pn</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">pn</span> <span class="ow">in</span> <span class="n">currentParams</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fileParams</span> <span class="ow">and</span> <span class="n">deleteMissing</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">remove_parameter</span><span class="p">(</span><span class="n">pn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ParameterManager.paramManToFile"><a class="viewcode-back" href="../../api/instrumentserver/params.html#instrumentserver.params.ParameterManager.paramManToFile">[docs]</a>    <span class="k">def</span> <span class="nf">paramManToFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filePath</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Save parameters from the instrument into a json file.</span>
+
+<span class="sd">        :param filePath: path to the json file. </span>
+<span class="sd">                         If ``None`` it looks in the instrument current location</span>
+<span class="sd">                         directory for a file called &quot;parametermanager_parameters.json&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">filePath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">filePath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_paramValuesFile</span>
+
+        <span class="n">folder</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">filePath</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">serialize</span><span class="o">.</span><span class="n">toParamDict</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">simpleFormat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">includeMeta</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

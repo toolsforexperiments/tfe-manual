@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Dummy Measurement Without Server &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Sweep Guide" href="../../labcore/Introduction%20to%20sweeping.html" />
+    <link rel="prev" title="Files Created by “Tools for Experiments Overview”" href="../toolsforexperiments_overview/notebook_out.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Index Page</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Examples and Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#general">General</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../toolsforexperiments_overview/tfe_overview.html">Tools for Experiments Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../toolsforexperiments_overview/notebook_out.html">Files Created by “Tools for Experiments Overview”</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Dummy Measurement Without Server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#README">README</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Initialization">Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Example:-Flux-tuning-a-resonator">Example: Flux tuning a resonator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#labcore">Labcore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#plotrr">Plotrr</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Examples and Guides</a> &raquo;</li>
+        
+      <li>Dummy Measurement Without Server</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/examples/general/dummy_measurement_without_server/measurement_notebook.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Dummy-Measurement-Without-Server">
+<h1>Dummy Measurement Without Server<a class="headerlink" href="#Dummy-Measurement-Without-Server" title="Permalink to this headline">¶</a></h1>
+<section id="README">
+<h2>README<a class="headerlink" href="#README" title="Permalink to this headline">¶</a></h2>
+<p>This is an example to illustrate how measurement notebooks could look like. Of course this is easy to convert to a script, if you prefer working with spyder, for example.</p>
+<p>Some things are not in a state yet that we’re fully happy with, they’re annotated correspondingly.</p>
+<p><strong>TODO:</strong> the initialization could be in a separate script or notebook. That would be useful if multiple notebooks run measurements, for example.</p>
+</section>
+<section id="Initialization">
+<h2>Initialization<a class="headerlink" href="#Initialization" title="Permalink to this headline">¶</a></h2>
+<section id="Imports">
+<h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+
+<span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">Instrument</span><span class="p">,</span> <span class="n">Station</span><span class="p">,</span> <span class="n">find_or_create_instrument</span>
+<span class="kn">from</span> <span class="nn">plottr.data</span> <span class="kn">import</span> <span class="n">datadict_storage</span> <span class="k">as</span> <span class="n">dds</span><span class="p">,</span> <span class="n">datadict</span> <span class="k">as</span> <span class="n">dd</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Configuration">
+<h3>Configuration<a class="headerlink" href="#Configuration" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">DATADIR</span> <span class="o">=</span> <span class="s1">&#39;./data/&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Create-instruments">
+<h3>Create instruments<a class="headerlink" href="#Create-instruments" title="Permalink to this headline">¶</a></h3>
+<p><strong>TODO:</strong> here we would prefer getting the instruments from the server.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Create a new station, close all previous instruments</span>
+<span class="n">Instrument</span><span class="o">.</span><span class="n">close_all</span><span class="p">()</span>
+<span class="n">station</span> <span class="o">=</span> <span class="n">Station</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">instrumentserver.testing.dummy_instruments.rf</span> <span class="kn">import</span> <span class="n">ResonatorResponse</span>
+<span class="n">vna</span> <span class="o">=</span> <span class="n">find_or_create_instrument</span><span class="p">(</span><span class="n">ResonatorResponse</span><span class="p">,</span> <span class="s1">&#39;vna&#39;</span><span class="p">)</span>
+<span class="n">station</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="n">vna</span><span class="p">)</span>
+
+<span class="n">vna</span><span class="o">.</span><span class="n">resonator_frequency</span><span class="p">(</span><span class="mf">5e9</span><span class="p">)</span>
+<span class="n">vna</span><span class="o">.</span><span class="n">resonator_linewidth</span><span class="p">(</span><span class="mf">10e6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">instrumentserver.testing.dummy_instruments.rf</span> <span class="kn">import</span> <span class="n">FluxControl</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">find_or_create_instrument</span><span class="p">(</span><span class="n">FluxControl</span><span class="p">,</span> <span class="s1">&#39;flux&#39;</span><span class="p">,</span> <span class="s1">&#39;vna&#39;</span><span class="p">)</span>
+<span class="n">station</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Connected to: None vna (serial:None, firmware:None) in 0.02s
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;flux&#39;
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Example:-Flux-tuning-a-resonator">
+<h2>Example: Flux tuning a resonator<a class="headerlink" href="#Example:-Flux-tuning-a-resonator" title="Permalink to this headline">¶</a></h2>
+<section id="Testing">
+<h3>Testing<a class="headerlink" href="#Testing" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># just acquire a trace and plot. The resonance frequency should change when changing the flux.</span>
+<span class="n">vna</span><span class="o">.</span><span class="n">start_frequency</span><span class="p">(</span><span class="mf">4e9</span><span class="p">)</span>
+<span class="n">vna</span><span class="o">.</span><span class="n">stop_frequency</span><span class="p">(</span><span class="mf">5.2e9</span><span class="p">)</span>
+<span class="n">vna</span><span class="o">.</span><span class="n">npoints</span><span class="p">(</span><span class="mi">1201</span><span class="p">)</span>
+<span class="n">vna</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">vna</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">flux</span><span class="o">.</span><span class="n">flux</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">f_vals</span> <span class="o">=</span> <span class="n">vna</span><span class="o">.</span><span class="n">frequency</span><span class="p">()</span>
+<span class="n">s11_vals</span> <span class="o">=</span> <span class="n">vna</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">s11_vals</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&lt;matplotlib.lines.Line2D at 0x145676afbe0&gt;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../../_images/examples_general_dummy_measurement_without_server_measurement_notebook_17_1.png" src="../../../_images/examples_general_dummy_measurement_without_server_measurement_notebook_17_1.png" />
+</div>
+</div>
+</section>
+<section id="Measurement">
+<h3>Measurement<a class="headerlink" href="#Measurement" title="Permalink to this headline">¶</a></h3>
+<section id="Basics">
+<h4>Basics<a class="headerlink" href="#Basics" title="Permalink to this headline">¶</a></h4>
+<p>This is a very simple example for how to use DDH5Writer to save data to hdf5. The basic structure is:</p>
+<ol class="arabic simple">
+<li><p>specify the structure of the data. This is required for two reasons: A, knowing the data structure before actually running measurement code allows to pre-define objects in the data files, which is important for accessing the data from multiple programs (single-writer multi-reader support). B, for all features in live-plotting and analysis to work we need to know the relations between different data objects (like dependent and independent data).</p></li>
+<li><p>use the Writer as context manager to add data (in practice, in some kind of measurement loop).</p></li>
+</ol>
+</section>
+<section id="Live-plotting">
+<h4>Live plotting<a class="headerlink" href="#Live-plotting" title="Permalink to this headline">¶</a></h4>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">plottr</span></code> to live plot the data (or plot it later). An easy way to do this is by running the <code class="docutils literal notranslate"><span class="pre">monitr</span></code> app from the command line. This assumes that plottr is installed through pip, which should create the required launcher script. Run (and replace <code class="docutils literal notranslate"><span class="pre">&lt;datadir&gt;</span></code> with your data directory root):</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">plottr-monitr</span> <span class="pre">&lt;datadir&gt;</span></code></p>
+<p>You should see the monitr window open. On the left you will see all data files in your data directory. If you select a data file, the right hand side will display the contents of that file. you can plot data by right-clicking on a top-level group container and selecting ‘Plot <code class="docutils literal notranslate"><span class="pre">&lt;group&gt;</span></code>’.</p>
+<p>If you activate the <code class="docutils literal notranslate"><span class="pre">Auto-plot</span> <span class="pre">new</span></code> button in the toolbar, any new data files appearing from this point on will be plotted automatically. The default refresh rate for the monitr app is 2 seconds (can be set a startup as a command line option).</p>
+</section>
+</section>
+<section id="Notes">
+<h3>Notes<a class="headerlink" href="#Notes" title="Permalink to this headline">¶</a></h3>
+<p><strong>TODO:</strong> This is using the bare file writer. Some things, like setting up the data structure will be made easier, but the new measurement structures are will work in progress.</p>
+<p><strong>TODO:</strong> This isn’t saving meta data yet, or copying additional files. An easy way to circumvent that for the time being is by inheriting from the DDH5 writer.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># this is defining the data structure.</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">DataDict</span><span class="p">(</span>
+    <span class="n">flux</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Phi0&#39;</span><span class="p">),</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;Hz&#39;</span><span class="p">),</span>
+    <span class="n">s11</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;flux&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">]),</span> <span class="c1"># no unit, complex.</span>
+<span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span> <span class="c1"># this is just for catching mistakes.</span>
+
+<span class="k">with</span> <span class="n">dds</span><span class="o">.</span><span class="n">DDH5Writer</span><span class="p">(</span><span class="n">DATADIR</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;FluxSweep&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">flux_val</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">):</span>
+        <span class="n">flux</span><span class="o">.</span><span class="n">flux</span><span class="p">(</span><span class="n">flux_val</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+        <span class="c1"># the writer accepts one line for each data field.</span>
+        <span class="c1"># that means we should reshape the data that each entry has the form [&lt;data&gt;].</span>
+        <span class="c1"># for practical purposes that means that each frequency and s11 data array</span>
+        <span class="c1"># is like one datapoint.</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">add_data</span><span class="p">(</span>
+            <span class="n">flux</span> <span class="o">=</span> <span class="p">[</span><span class="n">flux_val</span><span class="p">],</span>
+            <span class="n">frequency</span> <span class="o">=</span> <span class="n">vna</span><span class="o">.</span><span class="n">frequency</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">s11</span> <span class="o">=</span> <span class="n">vna</span><span class="o">.</span><span class="n">data</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_8924/182832018.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      7</span> data<span class="ansi-yellow-intense-fg ansi-bold">.</span>validate<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold"># this is just for catching mistakes.</span>
+<span class="ansi-green-fg">      8</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 9</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">with</span> dds<span class="ansi-yellow-intense-fg ansi-bold">.</span>DDH5Writer<span class="ansi-yellow-intense-fg ansi-bold">(</span>DATADIR<span class="ansi-yellow-intense-fg ansi-bold">,</span> data<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#39;FluxSweep&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">as</span> writer<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">     10</span>     <span class="ansi-green-intense-fg ansi-bold">for</span> flux_val <span class="ansi-green-intense-fg ansi-bold">in</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>linspace<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">101</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">     11</span>         flux<span class="ansi-yellow-intense-fg ansi-bold">.</span>flux<span class="ansi-yellow-intense-fg ansi-bold">(</span>flux_val<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">c:\users\msmt\documents\github\plottr\plottr\data\datadict_storage.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-intense-fg ansi-bold">(self, datadict, basedir, groupname, name, filename, filepath)</span>
+<span class="ansi-green-fg">    547</span>         self<span class="ansi-yellow-intense-fg ansi-bold">.</span>file<span class="ansi-yellow-intense-fg ansi-bold">:</span> Optional<span class="ansi-yellow-intense-fg ansi-bold">[</span>h5py<span class="ansi-yellow-intense-fg ansi-bold">.</span>File<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-green-intense-fg ansi-bold">None</span>
+<span class="ansi-green-fg">    548</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 549</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>datadict<span class="ansi-yellow-intense-fg ansi-bold">.</span>add_meta<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;dataset.name&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    550</span>
+<span class="ansi-green-fg">    551</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> __enter__<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-&gt;</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;DDH5Writer&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>: &#39;str&#39; object has no attribute &#39;add_meta&#39;
+</pre></div></div>
+</div>
+<section id="Inspecting-the-data">
+<h4>Inspecting the data<a class="headerlink" href="#Inspecting-the-data" title="Permalink to this headline">¶</a></h4>
+<p>This is just to illustrate how to open and look at the data. You often would not actually do that in the measurement notebook.</p>
+<p>Note that the data is currently also in the memory. <strong>TODO</strong>: an operation mode for not keeping the data in the memory is not implemented yet.</p>
+<p>To illustrate, we look at the data in the memory, and compare with the file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># when we look at the data now, we see it&#39;s not on a grid, even though we want the data to be.</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">structure</span><span class="p">())</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shapes</span><span class="p">())</span>
+
+<span class="c1"># this is detecting the grid in the data</span>
+<span class="n">data_as_grid</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">datadict_to_meshgrid</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">data_as_grid</span><span class="o">.</span><span class="n">structure</span><span class="p">())</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">data_as_grid</span><span class="o">.</span><span class="n">shapes</span><span class="p">())</span>
+
+<span class="n">flux_data</span> <span class="o">=</span> <span class="n">data_as_grid</span><span class="o">.</span><span class="n">data_vals</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+<span class="n">frq_data</span> <span class="o">=</span> <span class="n">data_as_grid</span><span class="o">.</span><span class="n">data_vals</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">s11_data</span> <span class="o">=</span> <span class="n">data_as_grid</span><span class="o">.</span><span class="n">data_vals</span><span class="p">(</span><span class="s1">&#39;s11&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">s11_data</span><span class="o">.</span><span class="n">T</span><span class="p">),</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+    <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">flux_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">flux_data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">frq_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">frq_data</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Flux (phi_0)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;flux&#39;: {&#39;axes&#39;: [], &#39;label&#39;: &#39;&#39;, &#39;unit&#39;: &#39;Phi0&#39;},
+ &#39;frequency&#39;: {&#39;axes&#39;: [], &#39;label&#39;: &#39;&#39;, &#39;unit&#39;: &#39;Hz&#39;},
+ &#39;s11&#39;: {&#39;axes&#39;: [&#39;flux&#39;, &#39;frequency&#39;], &#39;label&#39;: &#39;&#39;, &#39;unit&#39;: &#39;&#39;}}
+{&#39;flux&#39;: (0,), &#39;frequency&#39;: (0,), &#39;s11&#39;: (0,)}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_8924/3443965536.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> <span class="ansi-red-intense-fg ansi-bold"># this is detecting the grid in the data</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 6</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>data_as_grid <span class="ansi-yellow-intense-fg ansi-bold">=</span> dd<span class="ansi-yellow-intense-fg ansi-bold">.</span>datadict_to_meshgrid<span class="ansi-yellow-intense-fg ansi-bold">(</span>data<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      7</span> pprint<span class="ansi-yellow-intense-fg ansi-bold">(</span>data_as_grid<span class="ansi-yellow-intense-fg ansi-bold">.</span>structure<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      8</span> pprint<span class="ansi-yellow-intense-fg ansi-bold">(</span>data_as_grid<span class="ansi-yellow-intense-fg ansi-bold">.</span>shapes<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">c:\users\msmt\documents\github\plottr\plottr\data\datadict.py</span> in <span class="ansi-cyan-fg">datadict_to_meshgrid</span><span class="ansi-blue-intense-fg ansi-bold">(data, target_shape, inner_axis_order, use_existing_shape)</span>
+<span class="ansi-green-fg">   1201</span>     <span class="ansi-red-intense-fg ansi-bold"># guess what the shape likely is.</span>
+<span class="ansi-green-fg">   1202</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> target_shape <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1203</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>shp_specs <span class="ansi-yellow-intense-fg ansi-bold">=</span> guess_shape_from_datadict<span class="ansi-yellow-intense-fg ansi-bold">(</span>data<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   1204</span>         shps = set(order_shape[1] if order_shape is not None
+<span class="ansi-green-fg">   1205</span>                    else None for order_shape in shp_specs.values())
+
+<span class="ansi-green-intense-fg ansi-bold">c:\users\msmt\documents\github\plottr\plottr\data\datadict.py</span> in <span class="ansi-cyan-fg">guess_shape_from_datadict</span><span class="ansi-blue-intense-fg ansi-bold">(data)</span>
+<span class="ansi-green-fg">   1156</span>             axdata <span class="ansi-yellow-intense-fg ansi-bold">=</span> data<span class="ansi-yellow-intense-fg ansi-bold">.</span>data_vals<span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   1157</span>             axes<span class="ansi-yellow-intense-fg ansi-bold">[</span>a<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> axdata
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1158</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>shapes<span class="ansi-yellow-intense-fg ansi-bold">[</span>d<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> num<span class="ansi-yellow-intense-fg ansi-bold">.</span>guess_grid_from_sweep_direction<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">**</span>axes<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   1159</span>
+<span class="ansi-green-fg">   1160</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> shapes
+
+<span class="ansi-green-intense-fg ansi-bold">c:\users\msmt\documents\github\plottr\plottr\utils\num.py</span> in <span class="ansi-cyan-fg">guess_grid_from_sweep_direction</span><span class="ansi-blue-intense-fg ansi-bold">(**axes)</span>
+<span class="ansi-green-fg">    254</span>         <span class="ansi-red-intense-fg ansi-bold"># first step: find repeating patterns in the data.</span>
+<span class="ansi-green-fg">    255</span>         <span class="ansi-red-intense-fg ansi-bold"># record for each dimension in which interval it repeats.</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 256</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>period <span class="ansi-yellow-intense-fg ansi-bold">=</span> find_direction_period<span class="ansi-yellow-intense-fg ansi-bold">(</span>vals<span class="ansi-yellow-intense-fg ansi-bold">,</span> ignore_last<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    257</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> period <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">not</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    258</span>             names_list<span class="ansi-yellow-intense-fg ansi-bold">.</span>append<span class="ansi-yellow-intense-fg ansi-bold">(</span>name<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">c:\users\msmt\documents\github\plottr\plottr\utils\num.py</span> in <span class="ansi-cyan-fg">find_direction_period</span><span class="ansi-blue-intense-fg ansi-bold">(vals, ignore_last)</span>
+<span class="ansi-green-fg">    190</span>              the more common direction <span class="ansi-green-intense-fg ansi-bold">is</span> changed<span class="ansi-yellow-intense-fg ansi-bold">.</span>
+<span class="ansi-green-fg">    191</span>     &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 192</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>switches <span class="ansi-yellow-intense-fg ansi-bold">=</span> _find_switches<span class="ansi-yellow-intense-fg ansi-bold">(</span>vals<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    193</span>
+<span class="ansi-green-fg">    194</span>     <span class="ansi-red-intense-fg ansi-bold"># if there&#39;s no switch at all, no period is defined.</span>
+
+<span class="ansi-green-intense-fg ansi-bold">c:\users\msmt\documents\github\plottr\plottr\utils\num.py</span> in <span class="ansi-cyan-fg">_find_switches</span><span class="ansi-blue-intense-fg ansi-bold">(arr, rth, ztol)</span>
+<span class="ansi-green-fg">    151</span>     arr_<span class="ansi-yellow-intense-fg ansi-bold">:</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>ndarray <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>ma<span class="ansi-yellow-intense-fg ansi-bold">.</span>MaskedArray<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr<span class="ansi-yellow-intense-fg ansi-bold">,</span> is_invalid<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    152</span>     deltas <span class="ansi-yellow-intense-fg ansi-bold">=</span> arr_<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span> arr_<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 153</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>hi <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>percentile<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">~</span>is_invalid<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">100.</span><span class="ansi-yellow-intense-fg ansi-bold">-</span>rth<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    154</span>     lo <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>percentile<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">~</span>is_invalid<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> rth<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    155</span>     diff <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>abs<span class="ansi-yellow-intense-fg ansi-bold">(</span>hi<span class="ansi-yellow-intense-fg ansi-bold">-</span>lo<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;__array_function__ internals&gt;</span> in <span class="ansi-cyan-fg">percentile</span><span class="ansi-blue-intense-fg ansi-bold">(*args, **kwargs)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Miniconda3\envs\qcodes\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">percentile</span><span class="ansi-blue-intense-fg ansi-bold">(a, q, axis, out, overwrite_input, interpolation, keepdims)</span>
+<span class="ansi-green-fg">   3865</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-green-intense-fg ansi-bold">not</span> _quantile_is_valid<span class="ansi-yellow-intense-fg ansi-bold">(</span>q<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">   3866</span>         <span class="ansi-green-intense-fg ansi-bold">raise</span> ValueError<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;Percentiles must be in the range [0, 100]&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 3867</span><span class="ansi-yellow-intense-fg ansi-bold">     return _quantile_unchecked(
+</span><span class="ansi-green-fg">   3868</span>         a, q, axis, out, overwrite_input, interpolation, keepdims)
+<span class="ansi-green-fg">   3869</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Miniconda3\envs\qcodes\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">_quantile_unchecked</span><span class="ansi-blue-intense-fg ansi-bold">(a, q, axis, out, overwrite_input, interpolation, keepdims)</span>
+<span class="ansi-green-fg">   3984</span>                         interpolation=&#39;linear&#39;, keepdims=False):
+<span class="ansi-green-fg">   3985</span>     <span class="ansi-blue-intense-fg ansi-bold">&#34;&#34;&#34;Assumes that q is in [0, 1], and is an ndarray&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 3986</span><span class="ansi-yellow-intense-fg ansi-bold">     r, k = _ureduce(a, func=_quantile_ureduce_func, q=q, axis=axis, out=out,
+</span><span class="ansi-green-fg">   3987</span>                     overwrite_input<span class="ansi-yellow-intense-fg ansi-bold">=</span>overwrite_input<span class="ansi-yellow-intense-fg ansi-bold">,</span>
+<span class="ansi-green-fg">   3988</span>                     interpolation=interpolation)
+
+<span class="ansi-green-intense-fg ansi-bold">~\Miniconda3\envs\qcodes\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">_ureduce</span><span class="ansi-blue-intense-fg ansi-bold">(a, func, **kwargs)</span>
+<span class="ansi-green-fg">   3562</span>         keepdim <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> a<span class="ansi-yellow-intense-fg ansi-bold">.</span>ndim
+<span class="ansi-green-fg">   3563</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 3564</span><span class="ansi-yellow-intense-fg ansi-bold">     </span>r <span class="ansi-yellow-intense-fg ansi-bold">=</span> func<span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   3565</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> r<span class="ansi-yellow-intense-fg ansi-bold">,</span> keepdim
+<span class="ansi-green-fg">   3566</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Miniconda3\envs\qcodes\lib\site-packages\numpy\lib\function_base.py</span> in <span class="ansi-cyan-fg">_quantile_ureduce_func</span><span class="ansi-blue-intense-fg ansi-bold">(***failed resolving arguments***)</span>
+<span class="ansi-green-fg">   4096</span>                 indices_below<span class="ansi-yellow-intense-fg ansi-bold">.</span>ravel<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> indices_above<span class="ansi-yellow-intense-fg ansi-bold">.</span>ravel<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
+<span class="ansi-green-fg">   4097</span>             )), axis=0)
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 4098</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>n <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>isnan<span class="ansi-yellow-intense-fg ansi-bold">(</span>ap<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   4099</span>         <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">   4100</span>             <span class="ansi-red-intense-fg ansi-bold"># cannot contain nan</span>
+
+<span class="ansi-red-intense-fg ansi-bold">IndexError</span>: index -1 is out of bounds for axis 0 with size 0
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Loading from file is essentiall the same thing:</span>
+<span class="n">data_from_file</span> <span class="o">=</span> <span class="n">dds</span><span class="o">.</span><span class="n">datadict_from_hdf5</span><span class="p">(</span><span class="n">writer</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">data_as_grid</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">datadict_to_meshgrid</span><span class="p">(</span><span class="n">data_from_file</span><span class="p">)</span>
+
+<span class="n">flux_data</span> <span class="o">=</span> <span class="n">data_as_grid</span><span class="o">.</span><span class="n">data_vals</span><span class="p">(</span><span class="s1">&#39;flux&#39;</span><span class="p">)</span>
+<span class="n">frq_data</span> <span class="o">=</span> <span class="n">data_as_grid</span><span class="o">.</span><span class="n">data_vals</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">s11_data</span> <span class="o">=</span> <span class="n">data_as_grid</span><span class="o">.</span><span class="n">data_vals</span><span class="p">(</span><span class="s1">&#39;s11&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">s11_data</span><span class="o">.</span><span class="n">T</span><span class="p">),</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+    <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">flux_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">flux_data</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">frq_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">frq_data</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Flux (phi_0)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_8924/3688273529.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold"># Loading from file is essentiall the same thing:</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>data_from_file <span class="ansi-yellow-intense-fg ansi-bold">=</span> dds<span class="ansi-yellow-intense-fg ansi-bold">.</span>datadict_from_hdf5<span class="ansi-yellow-intense-fg ansi-bold">(</span>writer<span class="ansi-yellow-intense-fg ansi-bold">.</span>file_path<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      3</span> data_as_grid <span class="ansi-yellow-intense-fg ansi-bold">=</span> dd<span class="ansi-yellow-intense-fg ansi-bold">.</span>datadict_to_meshgrid<span class="ansi-yellow-intense-fg ansi-bold">(</span>data_from_file<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> flux_data <span class="ansi-yellow-intense-fg ansi-bold">=</span> data_as_grid<span class="ansi-yellow-intense-fg ansi-bold">.</span>data_vals<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;flux&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;writer&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../../labcore/Introduction%20to%20sweeping.html" class="btn btn-neutral float-right" title="Sweep Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../toolsforexperiments_overview/notebook_out.html" class="btn btn-neutral float-left" title="Files Created by “Tools for Experiments Overview”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

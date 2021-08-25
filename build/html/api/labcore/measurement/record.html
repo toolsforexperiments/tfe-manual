@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Record &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Base Utils" href="../utils.html" />
+    <link rel="prev" title="Sweep" href="sweep.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Index Page</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Labcore API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sweep.html">Sweep</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../utils.html">Base Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ddh5.html">DDH5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../instrumentserver/index.html">Instrumentserver API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../plottr/index.html">Plottr’s API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">API Index Page</a> &raquo;</li>
+        
+          <li><a href="../index.html">Labcore API</a> &raquo;</li>
+        
+      <li>Record</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/api/labcore/measurement/record.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-labcore.measurement.record">
+<span id="record"></span><h1>Record<a class="headerlink" href="#module-labcore.measurement.record" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpec">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">DataSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depends_on</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataType" title="labcore.measurement.record.DataType"><span class="pre">labcore.measurement.record.DataType</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'scalar'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#DataSpec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.DataSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specification for data parameters to be recorded.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpec.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#DataSpec.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.DataSpec.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a deep copy of the DataSpec instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpec.depends_on">
+<span class="sig-name descname"><span class="pre">depends_on</span></span><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#labcore.measurement.record.DataSpec.depends_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>dependencies. if <code class="docutils literal notranslate"><span class="pre">None</span></code>, it is independent.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpec.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#labcore.measurement.record.DataSpec.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of the parameter</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpec.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="pre">:</span> <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataType" title="labcore.measurement.record.DataType"><span class="pre">labcore.measurement.record.DataType</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">'scalar'</span></em><a class="headerlink" href="#labcore.measurement.record.DataSpec.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>information about data format</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpec.unit">
+<span class="sig-name descname"><span class="pre">unit</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><em class="property"> <span class="pre">=</span> <span class="pre">''</span></em><a class="headerlink" href="#labcore.measurement.record.DataSpec.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>physical unit of the data</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpecCreationType">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">DataSpecCreationType</span></span><a class="headerlink" href="#labcore.measurement.record.DataSpecCreationType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type from which we can create a DataSpec.</p>
+<p>alias of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]], <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">labcore.measurement.record.DataSpec</span></code></a>]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpecFromDictType">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">DataSpecFromDictType</span></span><a class="headerlink" href="#labcore.measurement.record.DataSpecFromDictType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type for creating a ds from a dict (i.e., what can be passed to the
+constructor of <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a> as keywords)</p>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataSpecFromTupleType">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">DataSpecFromTupleType</span></span><a class="headerlink" href="#labcore.measurement.record.DataSpecFromTupleType" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type for creating a ds from a tuple (i.e., what can be passed to the
+constructor of <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a>)</p>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">DataType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#DataType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.DataType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Valid options for data types used in <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataType.array">
+<span class="sig-name descname"><span class="pre">array</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'array'</span></em><a class="headerlink" href="#labcore.measurement.record.DataType.array" title="Permalink to this definition">¶</a></dt>
+<dd><p>multi-valued data. typically numpy-arrays.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.DataType.scalar">
+<span class="sig-name descname"><span class="pre">scalar</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'scalar'</span></em><a class="headerlink" href="#labcore.measurement.record.DataType.scalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>scalar (single-valued) data. typically numeric, but also bool, etc.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="labcore.measurement.record.FunctionToRecords">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">FunctionToRecords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data_specs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#FunctionToRecords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.FunctionToRecords" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper that converts a function return to a record.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="labcore.measurement.record.IteratorToRecords">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">IteratorToRecords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data_specs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#IteratorToRecords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.IteratorToRecords" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper that converts the iteration values to records.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.combine_data_specs">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">combine_data_specs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">specs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">,</span> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#combine_data_specs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.combine_data_specs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a tuple of DataSpecs from the inputs. Removes duplicates.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.data_specs_label">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">data_specs_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dspecs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#data_specs_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.data_specs_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a readable label for multiple data specs.</p>
+<dl class="simple">
+<dt>Format:</dt><dd><p>{data_name_1 (dep_1, dep_2), data_name_2 (dep_3), etc.}</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dspecs</strong> – data specs as positional arguments.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>label as string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.dep">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">dep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depends_on</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'scalar'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#labcore.measurement.record.dep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a the spec for a dependent parameter.
+All arguments are forwarded to the <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a> constructor.
+<code class="docutils literal notranslate"><span class="pre">depends_on</span></code> may not be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.dependent">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">dependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depends_on</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'scalar'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#dependent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.dependent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a the spec for a dependent parameter.
+All arguments are forwarded to the <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a> constructor.
+<code class="docutils literal notranslate"><span class="pre">depends_on</span></code> may not be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="labcore.measurement.record.ds">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">ds</span></span><a class="headerlink" href="#labcore.measurement.record.ds" title="Permalink to this definition">¶</a></dt>
+<dd><p>shorter notation for constructing DataSpec objects</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.indep">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">indep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'scalar'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a></span></span><a class="headerlink" href="#labcore.measurement.record.indep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a the spec for an independent parameter.
+All arguments are forwarded to the <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a> constructor.
+<code class="docutils literal notranslate"><span class="pre">depends_on</span></code> is set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.independent">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">independent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'scalar'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#independent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.independent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a the spec for an independent parameter.
+All arguments are forwarded to the <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a> constructor.
+<code class="docutils literal notranslate"><span class="pre">depends_on</span></code> is set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.make_data_spec">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">make_data_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#make_data_spec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.make_data_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a DataSpec object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> – <p>May be one of the following with the following behavior:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A string create a dependent with name given by the string</p></li>
+<li><p>A tuple of values that can be used to pass to the constructor of <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a></p></li>
+<li><p>A dictionary entries of which will be passed as keyword arguments to the constructor of <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a></p></li>
+<li><p>A <a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSpec</span></code></a> instance</p></li>
+</ul>
+</div></blockquote>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.make_data_specs">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">make_data_specs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">specs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">,</span> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#make_data_specs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.make_data_specs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a tuple of DataSpec instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>specs</strong> – will be passed individually to <a class="reference internal" href="#labcore.measurement.record.make_data_spec" title="labcore.measurement.record.make_data_spec"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_data_spec()</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.produces_record">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">produces_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#produces_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.produces_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if <cite>obj</cite> is annotated to generate records.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.record_as">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">record_as</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">,</span> </span><span class="pre">Iterable</span><span class="p"><span class="pre">,</span> </span><span class="pre">Iterator</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">specs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#record_as"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.record_as" title="Permalink to this definition">¶</a></dt>
+<dd><p>Annotate produced data as records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – a function that returns data or an iterable/iterator that
+produces data at each iteration step</p></li>
+<li><p><strong>specs</strong> – specs for the data produced (see <a class="reference internal" href="#labcore.measurement.record.make_data_specs" title="labcore.measurement.record.make_data_specs"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_data_specs()</span></code></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="labcore.measurement.record.recording">
+<span class="sig-prename descclassname"><span class="pre">labcore.measurement.record.</span></span><span class="sig-name descname"><span class="pre">recording</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data_specs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#labcore.measurement.record.DataSpec" title="labcore.measurement.record.DataSpec"><span class="pre">labcore.measurement.record.DataSpec</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="reference internal" href="../../../_modules/labcore/measurement/record.html#recording"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#labcore.measurement.record.recording" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a decorator that allows adding data parameter specs to a
+function.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../utils.html" class="btn btn-neutral float-right" title="Base Utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sweep.html" class="btn btn-neutral float-left" title="Sweep" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

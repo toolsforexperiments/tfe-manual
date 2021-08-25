@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Serialize &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Client" href="client/index.html" />
+    <link rel="prev" title="Params" href="params.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Index Page</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../labcore/index.html">Labcore API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Instrumentserver API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="helpers.html">Helpers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="log.html">Log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="params.html">Params</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Serialize</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#instrumentserver-serialize">instrumentserver.serialize</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="client/index.html">Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="server/index.html">Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing/index.html">Dummy Instruments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plottr/index.html">Plottr’s API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">API Index Page</a> &raquo;</li>
+        
+          <li><a href="index.html">Instrumentserver API</a> &raquo;</li>
+        
+      <li>Serialize</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/api/instrumentserver/serialize.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-instrumentserver.serialize">
+<span id="serialize"></span><h1>Serialize<a class="headerlink" href="#module-instrumentserver.serialize" title="Permalink to this headline">¶</a></h1>
+<section id="instrumentserver-serialize">
+<h2>instrumentserver.serialize<a class="headerlink" href="#instrumentserver-serialize" title="Permalink to this headline">¶</a></h2>
+<p>Serializing and de-serializing instruments and parameters.
+The tools in here can be used to perform the following tasks:
+- store instrument and parameter information to json
+- load instrument and parameter information from json</p>
+<p>The main utility of the methods here is to have a relatively simple representation
+of the state of the system (by system we mean: either a qcodes station, or simply
+a collection of qcodes instruments and parameters).
+All of this information is also provided by the qcodes snaphot.
+This module is currently intended to supplement that with a format that is easier
+to read and contains only state information (such as values).</p>
+<p>The main methods here are <a class="reference internal" href="#instrumentserver.serialize.toParamDict" title="instrumentserver.serialize.toParamDict"><code class="xref py py-func docutils literal notranslate"><span class="pre">toParamDict()</span></code></a> and <a class="reference internal" href="#instrumentserver.serialize.fromParamDict" title="instrumentserver.serialize.fromParamDict"><code class="xref py py-func docutils literal notranslate"><span class="pre">fromParamDict()</span></code></a>, which allow
+extracting instrument parameters to JSON and load parameters from JSON.</p>
+<p>The main format for the JSON objects we work with follows this scheme:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paramDict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;parameter_name&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;unit of this parameter&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;instrument.instrument_parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;the unit of this parameter&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;another_instrument.a_submodule.some_parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Only “value” is required as key for each parameter, but arbitrary additional meta
+data can be added in principle.
+The naming of the parameters is the same way in which they would be addressed inside
+a qcodes station.
+I.e., if the parameter is called using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">station</span><span class="o">.</span><span class="p">[</span><span class="n">parent</span> <span class="nb">object</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span><span class="o">.</span><span class="n">parameter</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>then the name in <cite>paramDict</cite> is “[parent objects(s)].parameter”.</p>
+<p>In case the only property of each parameter is <cite>value</cite>, then it is also possible
+to use a simplified format which looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paramDict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;parameter_name&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+    <span class="s2">&quot;instrument.instrument_parameter&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+    <span class="s2">&quot;another_instrument.a_submodule.some_parameter&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This format is sufficient to store/load parameter values, but not to create
+parameters that are not present yet.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="instrumentserver.serialize.fromParamDict">
+<span class="sig-prename descclassname"><span class="pre">instrumentserver.serialize.</span></span><span class="sig-name descname"><span class="pre">fromParamDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paramDict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.station.Station</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.instrument.base.InstrumentBase</span><span class="p"><span class="pre">,</span> </span><span class="pre">qcodes.instrument.parameter.Parameter</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/instrumentserver/serialize.html#fromParamDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#instrumentserver.serialize.fromParamDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load parameter values from JSON</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>paramDict</strong> – the parameter dictionary in a valid JSON format (may be
+simple or regular format)</p></li>
+<li><p><strong>target</strong> – object(s) holding the parameters to load.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrumentserver.serialize.isSimpleFormat">
+<span class="sig-prename descclassname"><span class="pre">instrumentserver.serialize.</span></span><span class="sig-name descname"><span class="pre">isSimpleFormat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paramDict</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/instrumentserver/serialize.html#isSimpleFormat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#instrumentserver.serialize.isSimpleFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the supplied paramDict is in the simplified format.</p>
+<p>We identify the simple format by the fact that otherwise <strong>all</strong> item values
+are a dictionary with a least the key <cite>value</cite> in it.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrumentserver.serialize.loadParamsFromFile">
+<span class="sig-prename descclassname"><span class="pre">instrumentserver.serialize.</span></span><span class="sig-name descname"><span class="pre">loadParamsFromFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filePath</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.station.Station</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.instrument.base.InstrumentBase</span><span class="p"><span class="pre">,</span> </span><span class="pre">qcodes.instrument.parameter.Parameter</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/instrumentserver/serialize.html#loadParamsFromFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#instrumentserver.serialize.loadParamsFromFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load (instrument) parameters from file.</p>
+<p>Loads the json from file, then tries to restore the state into the target,
+using <a class="reference internal" href="#instrumentserver.serialize.fromParamDict" title="instrumentserver.serialize.fromParamDict"><code class="xref py py-func docutils literal notranslate"><span class="pre">fromParamDict()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrumentserver.serialize.saveParamsToFile">
+<span class="sig-prename descclassname"><span class="pre">instrumentserver.serialize.</span></span><span class="sig-name descname"><span class="pre">saveParamsToFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.station.Station</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.instrument.base.InstrumentBase</span><span class="p"><span class="pre">,</span> </span><span class="pre">qcodes.instrument.parameter.Parameter</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filePath</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/instrumentserver/serialize.html#saveParamsToFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#instrumentserver.serialize.saveParamsToFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save (instrument) parameters to file.</p>
+<p>First obtains the parameters from <a class="reference internal" href="#instrumentserver.serialize.toParamDict" title="instrumentserver.serialize.toParamDict"><code class="xref py py-func docutils literal notranslate"><span class="pre">toParamDict()</span></code></a>, then saves its output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – qcodes station or list of instruments/parameters.</p></li>
+<li><p><strong>filePath</strong> – output file path.</p></li>
+<li><p><strong>kw</strong> – options, all passed to <a class="reference internal" href="#instrumentserver.serialize.toParamDict" title="instrumentserver.serialize.toParamDict"><code class="xref py py-func docutils literal notranslate"><span class="pre">toParamDict()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrumentserver.serialize.toDataFrame">
+<span class="sig-prename descclassname"><span class="pre">instrumentserver.serialize.</span></span><span class="sig-name descname"><span class="pre">toDataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.station.Station</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.instrument.base.InstrumentBase</span><span class="p"><span class="pre">,</span> </span><span class="pre">qcodes.instrument.parameter.Parameter</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/instrumentserver/serialize.html#toDataFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#instrumentserver.serialize.toDataFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a pandas data frame from the parameters. mainly useful for 
+printing overviews in notebooks.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="instrumentserver.serialize.toParamDict">
+<span class="sig-prename descclassname"><span class="pre">instrumentserver.serialize.</span></span><span class="sig-name descname"><span class="pre">toParamDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.station.Station</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">qcodes.instrument.base.InstrumentBase</span><span class="p"><span class="pre">,</span> </span><span class="pre">qcodes.instrument.parameter.Parameter</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includeMeta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excludeParameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simpleFormat</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../../_modules/instrumentserver/serialize.html#toParamDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#instrumentserver.serialize.toParamDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dictionary that holds parameter values, and optionally additional
+information about them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – qcodes station or list of instruments/parameters.</p></li>
+<li><p><strong>get</strong> – whether to call <cite>get</cite> on the parameters.
+if not, use the values from the current snapshot.
+Note: parameters that are not included in the snapshot are never included.</p></li>
+<li><p><strong>includeMeta</strong> – list of parameter attributes to include besides value.
+All keys occurring in snapshots are valid.</p></li>
+<li><p><strong>excludeParameters</strong> – list of parameters we don’t include in the return.</p></li>
+<li><p><strong>simpleFormat</strong> – if <code class="docutils literal notranslate"><span class="pre">True</span></code> and no additional metadata is included,
+then the output format will be simplified such that the the value for
+each parameter key is simply <cite>value</cite>, rather than a dictionary of
+multiple properties.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary. If not simple format, conforms to
+instrumentserver/schemas/parameters.json</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="client/index.html" class="btn btn-neutral float-right" title="Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="params.html" class="btn btn-neutral float-left" title="Params" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

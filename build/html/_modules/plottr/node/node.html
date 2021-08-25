@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>plottr.node.node &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Index Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>plottr.node.node</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for plottr.node.node</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">node.py</span>
+
+<span class="sd">Contains the base class for Nodes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">Logger</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">NodeBase</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">Slot</span><span class="p">,</span> <span class="n">QtWidgets</span>
+<span class="kn">from</span> <span class="nn">..data.datadict</span> <span class="kn">import</span> <span class="n">DataDictBase</span><span class="p">,</span> <span class="n">MeshgridDataDict</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">log</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Wolfgang Pfaff&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;MIT&#39;</span>
+
+
+<span class="c1"># TODO: implement a threaded version of Node</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Node&quot;</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="updateOption"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.updateOption">[docs]</a><span class="k">def</span> <span class="nf">updateOption</span><span class="p">(</span><span class="n">optName</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">],</span> <span class="n">T</span><span class="p">]],</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">],</span> <span class="n">T</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;Decorator for property setters that are handy for user options.</span>
+
+<span class="sd">    Property setters in nodes that are decorated with this will do two things:</span>
+<span class="sd">    * call ``Node.update``, in order to update the flowchart.</span>
+<span class="sd">    * if there is a UI, we call the matching ``optSetter`` function.</span>
+
+<span class="sd">    :param optName: name of the property.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">],</span> <span class="n">T</span><span class="p">]:</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">R</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">S</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">optName</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
+                    <span class="n">optName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">optSetters</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">optSetters</span><span class="p">[</span><span class="n">optName</span><span class="p">](</span><span class="n">val</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signalUpdate</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ret</span>
+
+        <span class="k">return</span> <span class="n">wrap</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;NodeWidget&quot;</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">,)</span>
+
+
+<div class="viewcode-block" id="updateGuiFromNode"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.updateGuiFromNode">[docs]</a><span class="k">def</span> <span class="nf">updateGuiFromNode</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">V</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">V</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator for the UI to set an internal flag to during execution of</span>
+<span class="sd">    the wrapped function. Prevents recursive updating (i.e., if</span>
+<span class="sd">    the node sends a new option value to the UI for updating, the UI</span>
+<span class="sd">    will then `not` notify the node back after making the update).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">U</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">V</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_emitGuiChange</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_emitGuiChange</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">return</span> <span class="n">wrap</span></div>
+
+
+<span class="n">updateGuiQuietly</span> <span class="o">=</span> <span class="n">updateGuiFromNode</span>
+
+<span class="n">W</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="emitGuiUpdate"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.emitGuiUpdate">[docs]</a><span class="k">def</span> <span class="nf">emitGuiUpdate</span><span class="p">(</span><span class="n">signalName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator for UI functions to emit the signal ``signalName``</span>
+<span class="sd">    (given as argument the decorator), with the return of the wrapped function.</span>
+
+<span class="sd">    Signal is only emitted if the flag controlled by ``updateGuiFromNode``</span>
+<span class="sd">    is not ``True``, i.e., if the option change was `not` caused by a</span>
+<span class="sd">    function decorated with ``updateGuiFromNode``.</span>
+
+<span class="sd">    :param signalName: name of the signal to emit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">W</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+            <span class="n">emit</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_emitGuiChange&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">emit</span><span class="p">:</span>
+                <span class="n">sig</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signalName</span><span class="p">)</span>
+                <span class="n">sig</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">wrap</span>
+
+    <span class="k">return</span> <span class="n">decorator</span></div>
+
+
+<div class="viewcode-block" id="Node"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node">[docs]</a><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">NodeBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class of the Node we use for plotter.</span>
+
+<span class="sd">    This class inherits from ``pyqtgraph``&#39;s Node, and adds a few additional</span>
+<span class="sd">    tools, and some defaults.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#: Name of the node. used in the flowchart node library.</span>
+    <span class="n">nodeName</span> <span class="o">=</span> <span class="s1">&#39;Node&#39;</span>
+
+    <span class="c1">#: Default terminals: one input and one output.</span>
+    <span class="n">terminals</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;dataIn&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;io&#39;</span><span class="p">:</span> <span class="s1">&#39;in&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;dataOut&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;io&#39;</span><span class="p">:</span> <span class="s1">&#39;out&#39;</span><span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="c1">#: UI node widget class. If not None, and ``useUi`` is ``True``, an</span>
+    <span class="c1">#: instance of the widget is created, and signal/slots are connected.</span>
+    <span class="n">uiClass</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="s2">&quot;NodeWidget&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1">#: Whether or not to automatically set up a UI widget.</span>
+    <span class="n">useUi</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1">#: Whether the ui should be visible by default</span>
+    <span class="n">uiVisibleByDefault</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1">#: A signal to notify the UI of option changes</span>
+    <span class="c1">#: arguments is a dictionary of options and new values.</span>
+    <span class="n">optionChangeNotification</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
+    <span class="c1">#: signal emitted when available data axes change</span>
+    <span class="c1">#: emits a the list of names of new axes</span>
+    <span class="n">dataAxesChanged</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="c1">#: signal emitted when any available data fields change (dep. and indep.)</span>
+    <span class="c1">#: emits a the list of names of new axes</span>
+    <span class="n">dataFieldsChanged</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="c1">#: signal emitted when data type changes</span>
+    <span class="n">dataTypeChanged</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+    <span class="c1">#: signal emitted when data structure changes (fields, or dtype)</span>
+    <span class="n">dataStructureChanged</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+    <span class="c1">#: signal emitted when data shapes change</span>
+    <span class="n">dataShapesChanged</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
+    <span class="c1">#: when data structure changes, emits (structure, shapes, type)</span>
+    <span class="n">newDataStructure</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">)</span>
+
+    <span class="c1">#: developer flag for whether we actually want to raise of use the logging</span>
+    <span class="c1">#: system</span>
+    <span class="n">_raiseExceptions</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new instance of the Node.</span>
+
+<span class="sd">        :param name: name of the instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">terminals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">terminals</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">signalUpdate</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataAxes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataDependents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">DataDictBase</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataShapes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataStructure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataDictBase</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">useUi</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">uiClass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;NodeWidget&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">uiClass</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Node.setupUi"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.setupUi">[docs]</a>    <span class="k">def</span> <span class="nf">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; setting up the UI widget.</span>
+
+<span class="sd">        Gets called automatically in the node initialization.</span>
+<span class="sd">        Automatically connect the UIs methods to signal option values.</span>
+
+<span class="sd">        Inheriting classes can use this method to do additional setup of the</span>
+<span class="sd">        UI widget (like connecting additional signals/slots between node and</span>
+<span class="sd">        node widget).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">optionToNode</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">setOption</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">allOptionsToNode</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">setOptions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optionChangeNotification</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">setOptionsFromNode</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Node.ctrlWidget"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.ctrlWidget">[docs]</a>    <span class="k">def</span> <span class="nf">ctrlWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the node widget, if it exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span></div>
+
+<div class="viewcode-block" id="Node.setOption"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.setOption">[docs]</a>    <span class="k">def</span> <span class="nf">setOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nameAndVal</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set an option.</span>
+
+<span class="sd">        name is the name of the property, not the string used for referencing</span>
+<span class="sd">        (which could in principle be different).</span>
+
+<span class="sd">        :param nameAndVal: tuple of option name and new value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">nameAndVal</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Node.setOptions"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.setOptions">[docs]</a>    <span class="k">def</span> <span class="nf">setOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set multiple options.</span>
+
+<span class="sd">        :param opts: a dictionary of property name : value pairs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">opts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Node.update"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">signal</span><span class="o">=</span><span class="n">signal</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Node</span><span class="o">.</span><span class="n">_raiseExceptions</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;EXCEPTION RAISED: </span><span class="si">{</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_tb</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                <span class="n">err</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; -&gt; </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">()</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Node.logger"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.logger">[docs]</a>    <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Logger</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get a logger for this node</span>
+
+<span class="sd">        :return: logger with a name that can be traced back easily to this node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">LEVEL</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logger</span></div>
+
+<div class="viewcode-block" id="Node.validateOptions"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.validateOptions">[docs]</a>    <span class="k">def</span> <span class="nf">validateOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DataDictBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Validate the user options</span>
+
+<span class="sd">        Does nothing in this base implementation. Can be reimplemented by any</span>
+<span class="sd">        inheriting class.</span>
+
+<span class="sd">        :param data: the data to verify the options against.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Node.process"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.Node.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataIn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataDictBase</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataDictBase</span><span class="p">]]]:</span>
+        <span class="k">if</span> <span class="n">dataIn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataIn</span><span class="p">,</span> <span class="n">DataDictBase</span><span class="p">):</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataIn</span><span class="p">)</span>
+            <span class="n">daxes</span> <span class="o">=</span> <span class="n">dataIn</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+            <span class="n">ddeps</span> <span class="o">=</span> <span class="n">dataIn</span><span class="o">.</span><span class="n">dependents</span><span class="p">()</span>
+            <span class="n">dshapes</span> <span class="o">=</span> <span class="n">dataIn</span><span class="o">.</span><span class="n">shapes</span><span class="p">()</span>
+
+            <span class="n">_axesChanged</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">_fieldsChanged</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">_typeChanged</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">_structChanged</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">_shapesChanged</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="n">daxes</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAxes</span><span class="p">:</span>
+                <span class="n">_axesChanged</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">if</span> <span class="n">daxes</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAxes</span> <span class="ow">or</span> <span class="n">ddeps</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataDependents</span><span class="p">:</span>
+                <span class="n">_fieldsChanged</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">if</span> <span class="n">dtype</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataType</span><span class="p">:</span>
+                <span class="n">_typeChanged</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">if</span> <span class="n">dtype</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataType</span> <span class="ow">or</span> <span class="n">daxes</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataAxes</span> \
+                    <span class="ow">or</span> <span class="n">ddeps</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataDependents</span><span class="p">:</span>
+                <span class="n">_structChanged</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">if</span> <span class="n">dshapes</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataShapes</span><span class="p">:</span>
+                <span class="n">_shapesChanged</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataAxes</span> <span class="o">=</span> <span class="n">daxes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataDependents</span> <span class="o">=</span> <span class="n">ddeps</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataType</span> <span class="o">=</span> <span class="n">dtype</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataShapes</span> <span class="o">=</span> <span class="n">dshapes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataStructure</span> <span class="o">=</span> <span class="n">dataIn</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span><span class="n">add_shape</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">_axesChanged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataAxesChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">daxes</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">_fieldsChanged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataFieldsChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">daxes</span> <span class="o">+</span> <span class="n">ddeps</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">_typeChanged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataTypeChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">_structChanged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataStructureChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataStructure</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">newDataStructure</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">dataStructure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataShapes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataType</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">_shapesChanged</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">_structChanged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataShapesChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">dshapes</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">dataIn</span><span class="p">)</span>
+            <span class="n">daxes</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">ddeps</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">dshapes</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">dtype</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataType</span><span class="p">:</span>
+                <span class="n">_typeChanged</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">_typeChanged</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dataTypeChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">validateOptions</span><span class="p">(</span><span class="n">dataIn</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="p">()</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Option validation not passed&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dataOut</span><span class="o">=</span><span class="n">dataIn</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="NodeWidget"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.NodeWidget">[docs]</a><span class="k">class</span> <span class="nc">NodeWidget</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for Node control widgets.</span>
+
+<span class="sd">    For the widget class to set up communication with the Node automatically,</span>
+<span class="sd">    make sure to set :attr:`plottr.node.node.NodeWidget.optGetters` and</span>
+<span class="sd">    :attr:`plottr.node.node.NodeWidget.optSetters` for a widget class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#: icon for this node</span>
+    <span class="n">icon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1">#: preferred location of the widget when used as dock widget</span>
+    <span class="n">preferredDockWidgetArea</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">LeftDockWidgetArea</span>
+
+    <span class="c1">#: signal (args: object)) to emit to notify the node of a (changed)</span>
+    <span class="c1">#: user option.</span>
+    <span class="n">optionToNode</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+    <span class="c1">#: signal (args: (object)) all options to the node.</span>
+    <span class="n">allOptionsToNode</span> <span class="o">=</span> <span class="n">Signal</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">embedWidgetClass</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optGetters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optSetters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_emitGuiChange</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QWidget</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">embedWidgetClass</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">layout</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QVBoxLayout</span><span class="p">()</span>
+            <span class="n">layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">widget</span> <span class="o">=</span> <span class="n">embedWidgetClass</span><span class="p">()</span>
+            <span class="n">layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">widget</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NodeWidget.getAllOptions"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.NodeWidget.getAllOptions">[docs]</a>    <span class="k">def</span> <span class="nf">getAllOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return all options as a dictionary&quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">optGetters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="NodeWidget.setOptionFromNode"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.NodeWidget.setOptionFromNode">[docs]</a>    <span class="nd">@updateGuiFromNode</span>
+    <span class="k">def</span> <span class="nf">setOptionFromNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set an option from the node</span>
+
+<span class="sd">        Calls the set function specified in the class&#39; ``optSetters``.</span>
+<span class="sd">        Decorated with ``@updateGuiFromNode``.</span>
+
+<span class="sd">        :param opt: name of the option</span>
+<span class="sd">        :param value: value to set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optSetters</span><span class="p">[</span><span class="n">opt</span><span class="p">](</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NodeWidget.setOptionsFromNode"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.NodeWidget.setOptionsFromNode">[docs]</a>    <span class="nd">@Slot</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">setOptionsFromNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set all options without triggering updates back to the node.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">opts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setOptionFromNode</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NodeWidget.signalOption"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.NodeWidget.signalOption">[docs]</a>    <span class="nd">@emitGuiUpdate</span><span class="p">(</span><span class="s1">&#39;optionToNode&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">signalOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns name and value of an option.</span>
+
+<span class="sd">        Value is determined from the optGetters.</span>
+<span class="sd">        Decorated with ``@emitGuiUpdate(&#39;optionToNode&#39;)``.</span>
+
+<span class="sd">        :param name: name of the option</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">optGetters</span><span class="p">[</span><span class="n">name</span><span class="p">]()</span></div>
+
+<div class="viewcode-block" id="NodeWidget.signalAllOptions"><a class="viewcode-back" href="../../../api/plottr/node.html#plottr.node.node.NodeWidget.signalAllOptions">[docs]</a>    <span class="nd">@emitGuiUpdate</span><span class="p">(</span><span class="s1">&#39;allOptionsToNode&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">signalAllOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return all options as a dictionary</span>
+
+<span class="sd">        Decorated with ``@emitGuiUpdate(&#39;optionToNode&#39;)``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAllOptions</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

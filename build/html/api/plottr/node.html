@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Node and Flowchart core elements &mdash; Tools for Experiments Manual  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Plotting elements" href="plot.html" />
+    <link rel="prev" title="Plottr’s API" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Tools for Experiments Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../plottr/index.html">Plottr’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labcore/index.html">Labcore’s Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentserver/index.html">Instrumentserver’s Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Index Page</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../labcore/index.html">Labcore API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instrumentserver/index.html">Instrumentserver API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Plottr’s API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Node and Flowchart core elements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-plottr.node.node">Node essentials: the node module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="plot.html">Plotting elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html">Data format: DataDict</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples and Guides</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tools for Experiments Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">API Index Page</a> &raquo;</li>
+        
+          <li><a href="index.html">Plottr’s API</a> &raquo;</li>
+        
+      <li>Node and Flowchart core elements</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/api/plottr/node.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="node-and-flowchart-core-elements">
+<h1>Node and Flowchart core elements<a class="headerlink" href="#node-and-flowchart-core-elements" title="Permalink to this headline">¶</a></h1>
+<section id="module-plottr.node.node">
+<span id="node-essentials-the-node-module"></span><h2>Node essentials: the node module<a class="headerlink" href="#module-plottr.node.node" title="Permalink to this headline">¶</a></h2>
+<p>node.py</p>
+<p>Contains the base class for Nodes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="plottr.node.node.Node">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">plottr.node.node.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class of the Node we use for plotter.</p>
+<p>This class inherits from <code class="docutils literal notranslate"><span class="pre">pyqtgraph</span></code>’s Node, and adds a few additional
+tools, and some defaults.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.ctrlWidget">
+<span class="sig-name descname"><span class="pre">ctrlWidget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PyQt5.QtWidgets.QWidget</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.ctrlWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.ctrlWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the node widget, if it exists.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.dataAxesChanged">
+<span class="sig-name descname"><span class="pre">dataAxesChanged</span></span><a class="headerlink" href="#plottr.node.node.Node.dataAxesChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal emitted when available data axes change
+emits a the list of names of new axes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.dataFieldsChanged">
+<span class="sig-name descname"><span class="pre">dataFieldsChanged</span></span><a class="headerlink" href="#plottr.node.node.Node.dataFieldsChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal emitted when any available data fields change (dep. and indep.)
+emits a the list of names of new axes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.dataShapesChanged">
+<span class="sig-name descname"><span class="pre">dataShapesChanged</span></span><a class="headerlink" href="#plottr.node.node.Node.dataShapesChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal emitted when data shapes change</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.dataStructureChanged">
+<span class="sig-name descname"><span class="pre">dataStructureChanged</span></span><a class="headerlink" href="#plottr.node.node.Node.dataStructureChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal emitted when data structure changes (fields, or dtype)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.dataTypeChanged">
+<span class="sig-name descname"><span class="pre">dataTypeChanged</span></span><a class="headerlink" href="#plottr.node.node.Node.dataTypeChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal emitted when data type changes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">logging.Logger</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a logger for this node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>logger with a name that can be traced back easily to this node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.newDataStructure">
+<span class="sig-name descname"><span class="pre">newDataStructure</span></span><a class="headerlink" href="#plottr.node.node.Node.newDataStructure" title="Permalink to this definition">¶</a></dt>
+<dd><p>when data structure changes, emits (structure, shapes, type)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.nodeName">
+<span class="sig-name descname"><span class="pre">nodeName</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'Node'</span></em><a class="headerlink" href="#plottr.node.node.Node.nodeName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the node. used in the flowchart node library.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.optionChangeNotification">
+<span class="sig-name descname"><span class="pre">optionChangeNotification</span></span><a class="headerlink" href="#plottr.node.node.Node.optionChangeNotification" title="Permalink to this definition">¶</a></dt>
+<dd><p>A signal to notify the UI of option changes
+arguments is a dictionary of options and new values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataIn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="data.html#plottr.data.datadict.DataDictBase" title="plottr.data.datadict.DataDictBase"><span class="pre">plottr.data.datadict.DataDictBase</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="data.html#plottr.data.datadict.DataDictBase" title="plottr.data.datadict.DataDictBase"><span class="pre">plottr.data.datadict.DataDictBase</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process data through this node. This method is called any time the flowchart 
+wants the node to process data. It will be called with one keyword argument
+corresponding to each input terminal, and must return a dict mapping the name
+of each output terminal to its new value.</p>
+<p>This method is also called with a ‘display’ keyword argument, which indicates
+whether the node should update its display (if it implements any) while processing
+this data. This is primarily used to disable expensive display operations
+during batch processing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.setOption">
+<span class="sig-name descname"><span class="pre">setOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nameAndVal</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.setOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.setOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an option.</p>
+<p>name is the name of the property, not the string used for referencing
+(which could in principle be different).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nameAndVal</strong> – tuple of option name and new value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.setOptions">
+<span class="sig-name descname"><span class="pre">setOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.setOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.setOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set multiple options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>opts</strong> – a dictionary of property name : value pairs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.setupUi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.setupUi" title="Permalink to this definition">¶</a></dt>
+<dd><p>setting up the UI widget.</p>
+<p>Gets called automatically in the node initialization.
+Automatically connect the UIs methods to signal option values.</p>
+<p>Inheriting classes can use this method to do additional setup of the
+UI widget (like connecting additional signals/slots between node and
+node widget).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.terminals">
+<span class="sig-name descname"><span class="pre">terminals</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'dataIn':</span> <span class="pre">{'io':</span> <span class="pre">'in'},</span> <span class="pre">'dataOut':</span> <span class="pre">{'io':</span> <span class="pre">'out'}}</span></em><a class="headerlink" href="#plottr.node.node.Node.terminals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default terminals: one input and one output.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.uiClass">
+<span class="sig-name descname"><span class="pre">uiClass</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#plottr.node.node.NodeWidget" title="plottr.node.node.NodeWidget"><span class="pre">plottr.node.node.NodeWidget</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#plottr.node.node.Node.uiClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>UI node widget class. If not None, and <code class="docutils literal notranslate"><span class="pre">useUi</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, an
+instance of the widget is created, and signal/slots are connected.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.uiVisibleByDefault">
+<span class="sig-name descname"><span class="pre">uiVisibleByDefault</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#plottr.node.node.Node.uiVisibleByDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the ui should be visible by default</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect all input values, attempt to process new output values, and propagate downstream.
+Subclasses should call update() whenever thir internal state has changed
+(such as when the user interacts with the Node’s control widget). Update
+is automatically called when the inputs to the node are changed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.Node.useUi">
+<span class="sig-name descname"><span class="pre">useUi</span></span><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#plottr.node.node.Node.useUi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether or not to automatically set up a UI widget.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.Node.validateOptions">
+<span class="sig-name descname"><span class="pre">validateOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="data.html#plottr.data.datadict.DataDictBase" title="plottr.data.datadict.DataDictBase"><span class="pre">plottr.data.datadict.DataDictBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#Node.validateOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.Node.validateOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the user options</p>
+<p>Does nothing in this base implementation. Can be reimplemented by any
+inheriting class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – the data to verify the options against.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">plottr.node.node.</span></span><span class="sig-name descname"><span class="pre">NodeWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PyQt5.QtWidgets.QWidget</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedWidgetClass</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">PyQt5.QtWidgets.QWidget</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#plottr.node.node.Node" title="plottr.node.node.Node"><span class="pre">plottr.node.node.Node</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/plottr/node/node.html#NodeWidget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.NodeWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for Node control widgets.</p>
+<p>For the widget class to set up communication with the Node automatically,
+make sure to set <code class="xref py py-attr docutils literal notranslate"><span class="pre">plottr.node.node.NodeWidget.optGetters</span></code> and
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">plottr.node.node.NodeWidget.optSetters</span></code> for a widget class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.allOptionsToNode">
+<span class="sig-name descname"><span class="pre">allOptionsToNode</span></span><a class="headerlink" href="#plottr.node.node.NodeWidget.allOptionsToNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal (args: (object)) all options to the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.getAllOptions">
+<span class="sig-name descname"><span class="pre">getAllOptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#NodeWidget.getAllOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.NodeWidget.getAllOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all options as a dictionary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.icon">
+<span class="sig-name descname"><span class="pre">icon</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PyQt5.QtGui.QIcon</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#plottr.node.node.NodeWidget.icon" title="Permalink to this definition">¶</a></dt>
+<dd><p>icon for this node</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.optionToNode">
+<span class="sig-name descname"><span class="pre">optionToNode</span></span><a class="headerlink" href="#plottr.node.node.NodeWidget.optionToNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal (args: object)) to emit to notify the node of a (changed)
+user option.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.preferredDockWidgetArea">
+<span class="sig-name descname"><span class="pre">preferredDockWidgetArea</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#plottr.node.node.NodeWidget.preferredDockWidgetArea" title="Permalink to this definition">¶</a></dt>
+<dd><p>preferred location of the widget when used as dock widget</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.setOptionFromNode">
+<span class="sig-name descname"><span class="pre">setOptionFromNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#NodeWidget.setOptionFromNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.NodeWidget.setOptionFromNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set an option from the node</p>
+<p>Calls the set function specified in the class’ <code class="docutils literal notranslate"><span class="pre">optSetters</span></code>.
+Decorated with <code class="docutils literal notranslate"><span class="pre">&#64;updateGuiFromNode</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>opt</strong> – name of the option</p></li>
+<li><p><strong>value</strong> – value to set</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.setOptionsFromNode">
+<span class="sig-name descname"><span class="pre">setOptionsFromNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#NodeWidget.setOptionsFromNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.NodeWidget.setOptionsFromNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set all options without triggering updates back to the node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.signalAllOptions">
+<span class="sig-name descname"><span class="pre">signalAllOptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#NodeWidget.signalAllOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.NodeWidget.signalAllOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all options as a dictionary</p>
+<p>Decorated with <code class="docutils literal notranslate"><span class="pre">&#64;emitGuiUpdate('optionToNode')</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="plottr.node.node.NodeWidget.signalOption">
+<span class="sig-name descname"><span class="pre">signalOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#NodeWidget.signalOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.NodeWidget.signalOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns name and value of an option.</p>
+<p>Value is determined from the optGetters.
+Decorated with <code class="docutils literal notranslate"><span class="pre">&#64;emitGuiUpdate('optionToNode')</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – name of the option</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plottr.node.node.emitGuiUpdate">
+<span class="sig-prename descclassname"><span class="pre">plottr.node.node.</span></span><span class="sig-name descname"><span class="pre">emitGuiUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signalName</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#emitGuiUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.emitGuiUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for UI functions to emit the signal <code class="docutils literal notranslate"><span class="pre">signalName</span></code>
+(given as argument the decorator), with the return of the wrapped function.</p>
+<p>Signal is only emitted if the flag controlled by <code class="docutils literal notranslate"><span class="pre">updateGuiFromNode</span></code>
+is not <code class="docutils literal notranslate"><span class="pre">True</span></code>, i.e., if the option change was <cite>not</cite> caused by a
+function decorated with <code class="docutils literal notranslate"><span class="pre">updateGuiFromNode</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signalName</strong> – name of the signal to emit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plottr.node.node.updateGuiFromNode">
+<span class="sig-prename descclassname"><span class="pre">plottr.node.node.</span></span><span class="sig-name descname"><span class="pre">updateGuiFromNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.V</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.V</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#updateGuiFromNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.updateGuiFromNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for the UI to set an internal flag to during execution of
+the wrapped function. Prevents recursive updating (i.e., if
+the node sends a new option value to the UI for updating, the UI
+will then <cite>not</cite> notify the node back after making the update).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plottr.node.node.updateGuiQuietly">
+<span class="sig-prename descclassname"><span class="pre">plottr.node.node.</span></span><span class="sig-name descname"><span class="pre">updateGuiQuietly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.V</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.V</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#plottr.node.node.updateGuiQuietly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for the UI to set an internal flag to during execution of
+the wrapped function. Prevents recursive updating (i.e., if
+the node sends a new option value to the UI for updating, the UI
+will then <cite>not</cite> notify the node back after making the update).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="plottr.node.node.updateOption">
+<span class="sig-prename descclassname"><span class="pre">plottr.node.node.</span></span><span class="sig-name descname"><span class="pre">updateOption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optName</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">plottr.node.node.R</span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.S</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">plottr.node.node.R</span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.S</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">plottr.node.node.T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/plottr/node/node.html#updateOption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#plottr.node.node.updateOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator for property setters that are handy for user options.</p>
+<p>Property setters in nodes that are decorated with this will do two things:
+* call <code class="docutils literal notranslate"><span class="pre">Node.update</span></code>, in order to update the flowchart.
+* if there is a UI, we call the matching <code class="docutils literal notranslate"><span class="pre">optSetter</span></code> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>optName</strong> – name of the property.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="plot.html" class="btn btn-neutral float-right" title="Plotting elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Plottr’s API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Wolfgang Pfaff, Marcos Frenkel.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
