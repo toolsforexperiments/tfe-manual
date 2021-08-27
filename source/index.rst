@@ -11,13 +11,13 @@ It will go through instrumentserver, plottr and labcore.
 
 .. toctree::
    :maxdepth: 2
+   :glob:
    :caption: Contents:
 
+   getting_started/index
    plottr/index
-   labcore/index
-   instrumentserver/index
    api/index
-   examples/index
+   specialized_topics/index
 
 
 
