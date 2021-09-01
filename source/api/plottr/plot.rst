@@ -28,8 +28,8 @@ Data structures
 Additional tools
 ----------------
 
-* :func:`.makeFlowchartWithPlot` : convenience function for creating a flowchart that leads to a plot node.
-* :func:`.determinePlotDataType` : try to infer which type of plot data is in a data set.
+* :func:`.makeFlowchartWithPlot` : Convenience function for creating a flowchart that leads to a plot node.
+* :func:`.determinePlotDataType` : Try to infer which type of plot data is in a data set.
 
 Object Documentation
 ====================
