@@ -8,5 +8,5 @@ python:
 
 sphinx:
   builder: html
-  configuration: source/conf.py
+  configuration: docs/source/conf.py
   fail_on_warning: false
