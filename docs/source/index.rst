@@ -14,10 +14,10 @@ It will go through instrumentserver, plottr and labcore.
    :glob:
    :caption: Contents:
 
-   getting_started/index
-   plottr/index
-   api/index
-   specialized_topics/index
+   source/getting_started/index
+   source/plottr/index
+   source/api/index
+   source/specialized_topics/index
 
 
 
