@@ -1,0 +1,12 @@
+version: 2
+formats: all
+python:
+  version: "3.8"
+  install:
+    - requirements: requirements.txt
+  system_packages: true
+
+sphinx:
+  builder: html
+  configuration: source/conf.py
+  fail_on_warning: false
