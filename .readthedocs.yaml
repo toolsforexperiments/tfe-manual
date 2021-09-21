@@ -6,6 +6,9 @@ submodules:
     - instrumentserver
   recursive: true
 
+conda:
+  environment: environment.yml
+
 python:
   version: "3.8"
   install:

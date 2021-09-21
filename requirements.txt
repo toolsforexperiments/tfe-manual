@@ -1,6 +1,4 @@
 ipykernel
 nbsphinx
-qtpy
-pyqt
-pyqt5
+
 -e instrumentserver
