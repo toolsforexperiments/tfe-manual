@@ -4,7 +4,6 @@ python:
   version: "3.8"
   install:
     - requirements: requirements.txt
-    - path: ./instrumentserver
   system_packages: true
 
 sphinx:
