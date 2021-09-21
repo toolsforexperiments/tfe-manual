@@ -13,10 +13,7 @@
 import os
 import sys
 sys.path.append(os.path.abspath('../../instrumentserver'))
-# sys.path.append(os.path.abspath('../../instrumentserver/instrumentserver'))
-# sys.path.append(os.path.abspath('../../instrumentserver/instrumentserver/helpers.py'))
 
-import instrumentserver
 
 # -- Project information -----------------------------------------------------
 
