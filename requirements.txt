@@ -1,5 +1,3 @@
 ipykernel
 nbsphinx
-qtpy
-qt
 git+https://github.com/toolsforexperiments/instrumentserver
