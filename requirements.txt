@@ -1,5 +1,5 @@
 ipykernel
 nbsphinx
 qtpy
-PySide
+qt
 git+https://github.com/toolsforexperiments/instrumentserver
