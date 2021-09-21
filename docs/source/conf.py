@@ -12,9 +12,10 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../instrumentserver'))
-sys.path.insert(0, os.path.abspath('../../instrumentserver/instrumentserver/'))
-sys.path.insert(0, os.path.abspath('../../instrumentserver/instrumentserver/helpers.py'))
+sys.path.append(os.path.abspath('../../instrumentserver'))
+# sys.path.append(os.path.abspath('../../instrumentserver/instrumentserver'))
+# sys.path.append(os.path.abspath('../../instrumentserver/instrumentserver/helpers.py'))
+
 
 
 # -- Project information -----------------------------------------------------
