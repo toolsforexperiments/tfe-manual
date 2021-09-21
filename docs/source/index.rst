@@ -14,12 +14,13 @@ It will go through instrumentserver, plottr and labcore.
    :glob:
    :caption: Contents:
 
-   source/getting_started/index
-   source/plottr/index
-   source/api/index
-   source/specialized_topics/index
+   getting_started/index
+   plottr/index
+   api/index
+   specialized_topics/index
 
 
+Hello this is test text to see if it shows up.
 
 Indices and tables
 ==================
