@@ -1,3 +1,9 @@
 [submodule "instrumentserver"]
 	path = instrumentserver
 	url = https://github.com/toolsforexperiments/instrumentserver
+[submodule "labcore"]
+	path = labcore
+	url = https://github.com/toolsforexperiments/labcore
+[submodule "plottr"]
+	path = plottr
+	url = https://github.com/toolsforexperiments/plottr
