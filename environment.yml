@@ -11,3 +11,4 @@ dependencies:
   - bokeh
   - numpy
   - scipy
+  - pyqtgraph
