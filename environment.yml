@@ -7,7 +7,6 @@ dependencies:
   - qtpy
   - pyqt
   - qcodes
-  - zmq
   - pandas
   - bokeh
   - numpy
