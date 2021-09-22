@@ -20,8 +20,6 @@ It will go through instrumentserver, plottr and labcore.
    specialized_topics/index
 
 
-Hello this is test text to see if it shows up.
-
 Indices and tables
 ==================
 
