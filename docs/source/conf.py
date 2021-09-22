@@ -13,6 +13,8 @@
 import os
 import sys
 sys.path.append(os.path.abspath('../../instrumentserver'))
+sys.path.append(os.path.abspath('../../plottr'))
+sys.path.append(os.path.abspath('../../labcore'))
 
 
 # -- Project information -----------------------------------------------------

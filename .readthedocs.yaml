@@ -4,6 +4,8 @@ formats: all
 submodules:
   include:
     - instrumentserver
+    - labcore
+    - plottr
   recursive: true
 
 conda:
