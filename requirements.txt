@@ -1,0 +1,3 @@
+-e instrumentserver
+-e plottr
+-e labcore

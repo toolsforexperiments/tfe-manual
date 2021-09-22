@@ -1,0 +1,24 @@
+version: 2
+formats: all
+
+submodules:
+  include:
+    - instrumentserver
+    - labcore
+    - plottr
+  recursive: true
+
+conda:
+  environment: environment.yml
+
+python:
+  version: "3.8"
+  install:
+    - requirements: requirements.txt
+  system_packages: true
+
+sphinx:
+  builder: html
+  configuration: docs/source/conf.py
+  fail_on_warning: false
+
