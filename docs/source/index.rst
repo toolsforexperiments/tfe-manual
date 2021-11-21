@@ -15,9 +15,10 @@ It will go through instrumentserver, plottr and labcore.
    :caption: Contents:
 
    getting_started/index
+   examples/index
    plottr/index
    api/index
-   specialized_topics/index
+..   specialized_topics/index
 
 
 Indices and tables
