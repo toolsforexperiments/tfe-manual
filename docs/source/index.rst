@@ -52,7 +52,8 @@ measurements easier.
    :caption: Contents:
 
    plottr/index
-   api/index
+
+..   api/index
 
 Indices and tables
 ==================
