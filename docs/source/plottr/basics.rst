@@ -34,8 +34,32 @@ We will use the `autoplot` app that comes with plottr by default.
     The examples below are also included in the notebook ``doc/examples/Plottr quickstart.ipynb``
     that comes with the plottr repository.
 
+
 Interactive use
 ^^^^^^^^^^^^^^^
+
+The easiest way to inspect data with plottr via the `autoplot app` is to use
+the :func:`plottr.apps.autoplot.autoplot` function from IPython or Jupyter.
+
+
+Loading QCoDeS data
+^^^^^^^^^^^^^^^^^^^
+
+TBD.
+
+Loading data from HDF5
+^^^^^^^^^^^^^^^^^^^^^^
+
+TBD.
+
+Live plotting measurement data
+------------------------------
+
+TBD.
+
+
+
+
 
 
 
