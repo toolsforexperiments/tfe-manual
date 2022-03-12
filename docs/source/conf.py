@@ -32,6 +32,7 @@ author = 'Wolfgang Pfaff, Marcos Frenkel'
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
+              'sphinx.ext.todo',
               'nbsphinx',
 ]
 
@@ -60,4 +61,8 @@ html_static_path = ['_static']
 
 # Explicitly stop nbsphinx from running jupyter notebooks
 nbsphinx_execute = 'never'
+
+# render todos
+todo_include_todos = True
+
 
