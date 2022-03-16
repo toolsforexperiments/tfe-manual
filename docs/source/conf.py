@@ -10,9 +10,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.append(os.path.abspath('../../instrumentserver'))
+sys.path.append(os.path.abspath('../../plottr'))
+sys.path.append(os.path.abspath('../../labcore'))
 
 
 # -- Project information -----------------------------------------------------
@@ -30,8 +32,8 @@ author = 'Wolfgang Pfaff, Marcos Frenkel'
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
+              'sphinx.ext.todo',
               'nbsphinx',
-              'sphinx-jsonschema'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -59,4 +61,8 @@ html_static_path = ['_static']
 
 # Explicitly stop nbsphinx from running jupyter notebooks
 nbsphinx_execute = 'never'
+
+# render todos
+todo_include_todos = True
+
 
