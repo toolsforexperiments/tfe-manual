@@ -44,6 +44,10 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['**.ipynb_checkpoints']
 
+# Make the order of members for autodoc to be in the order found in the
+# source code.
+
+autodoc_member_order = 'bysource'
 
 # -- Options for HTML output -------------------------------------------------
 
