@@ -231,7 +231,7 @@ The following is the base class from which both ``DataDict`` and ``MeshgridDataD
 
 .. autoclass:: plottr.data.datadict.DataDictBase
     :members:
-
+    :exclude-members: set_meta
 
 DataDict
 ~~~~~~~~

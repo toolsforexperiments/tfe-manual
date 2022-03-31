@@ -12,4 +12,4 @@ The number of records is determined by the items in the outermost axes.
 Axes: Independent data fields of a ``DataDict``.
 Dependents: Data fields that are dependent of specific axes.
 Data Fields: Variables.
-
+Dataset: Same as DataDict.

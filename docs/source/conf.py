@@ -13,14 +13,15 @@
 import os
 import sys
 sys.path.append(os.path.abspath('../../instrumentserver'))
-sys.path.append(os.path.abspath('../../plottr'))
+# sys.path.append(os.path.abspath('../../plottr'))
 sys.path.append(os.path.abspath('../../labcore'))
 
+sys.path.insert(0, os.path.abspath('../../plottr'))
 
 # -- Project information -----------------------------------------------------
 
 project = 'Tools for Experiments Manual'
-copyright = '2021, Wolfgang Pfaff, Marcos Frenkel'
+copyright = '2022, Wolfgang Pfaff, Marcos Frenkel'
 author = 'Wolfgang Pfaff, Marcos Frenkel'
 
 
