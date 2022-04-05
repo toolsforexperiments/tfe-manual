@@ -53,7 +53,6 @@ measurements easier.
 
    plottr/index
 
-..   api/index
 
 Indices and tables
 ==================
