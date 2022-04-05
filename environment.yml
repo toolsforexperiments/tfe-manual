@@ -3,13 +3,14 @@ channels:
   - conda-forge
 dependencies:
   - pip
-  - ipykernel
-  - nbsphinx
   - qtpy
   - pyqt
-  - qcodes
-  - pandas
-  - bokeh
-  - numpy
-  - scipy
   - pyqtgraph
+  - pip:
+    - ipykernel
+    - nbsphinx
+    - qcodes
+    - pandas
+    - bokeh
+    - numpy
+    - scipy
