@@ -336,8 +336,192 @@ This implementation of :class:`DataDictBase <plottr.data.datadict.DataDictBase>`
 So the only way of populating it is by manually modifying the ``values`` object of each data field since the tools
 for populating the DataDict are specific to the :class:`DataDict <plottr.data.datadict.DataDict>` implementation.
 
+
+DataDict Storage
+----------------
+
+The datadict_storage.py module offers tools to help with saving DataDicts into disk by storing them in DDH5 files (`HDF5 files <https://en.wikipedia.org/wiki/Hierarchical_Data_Format>`_ that contains DataDicts inside).
+
+Description of the HDF5 storage format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We use a simple mapping from DataDict to the HDF5 file. Within the file,
+a single DataDict is stored in a (top-level) group of the file.
+The data fields are datasets within that group.
+
+Global meta data of the DataDict are attributes of the group; field meta data
+are attributes of the dataset (incl., the `unit` and `axes` values). The meta
+data keys are given exactly like in the DataDict, i.e., includes the double
+underscore pre- and suffix.
+
+For more specific information on how HDF5 works please read the `following documentation <https://portal.hdfgroup.org/display/HDF5/Introduction+to+HDF5>`__
+
+Working with DDH5 files
+^^^^^^^^^^^^^^^^^^^^^^^
+
+When we are working with data, the first thing we usually want to do is to save it in disk. We can directly save an already existing DataDict into disk by calling the function :func:`datadict_to_hdf5 <plottr.data.datadict_storage.datadict_to_hdf5>`.
+
+>>> data_dict = DataDict(x=dict(values=np.array([0,1,2]), axes=[], __unit__='cm'), y=dict(values=np.array([3,4,5]), axes=['x']))
+>>> data_dict
+{'x': {'values': array([0, 1, 2]), 'axes': [], '__unit__': 'cm'},
+ 'y': {'values': array([3, 4, 5]), 'axes': ['x']}}
+>>> datadict_to_hdf5(data_dict, 'folder\data.ddh5')
+
+:func:`datadict_to_hdf5 <plottr.data.datadict_storage.datadict_to_hdf5>` will save data_dict in a file named 'data.ddh5' in whatever directory is passed to it, creating new folders if they don't already exists. The file will contain all of the data fields as well as all the metadata, with some more metadata generated to specify when the DataDict was created.
+
+.. note::
+    Meta data is only written during initial writing of the dataset.
+    If we're appending to existing datasets, we're not setting meta
+    data anymore.
+
+.. warning::
+    For this method to properly work the objects that are being saved in the ``values`` key of a data field must by a numpy array, or numpy array like.
+
+Data saved on disk is useless however if we do not have a way of accessing it. To do this we use the :func:`datadict_from_hdf5 <plottr.data.datadict_storage.datadict_from_hdf5>`:
+
+>>> loaded_data_dict = datadict_from_hdf5('folder\data.ddh5')
+>>> loaded_data_dict
+{'__creation_time_sec__': 1651159636.0,
+ '__creation_time_str__': '2022-04-28 10:27:16',
+ 'x': {'values': array([0, 1, 2]),
+  'axes': [],
+  '__shape__': (3,),
+  '__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  '__unit__': 'cm',
+  'unit': '',
+  'label': ''},
+ 'y': {'values': array([3, 4, 5]),
+  'axes': ['x'],
+  '__shape__': (3,),
+  '__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  'unit': '',
+  'label': ''}}
+
+We can see that the DataDict is the same one we saved earlier with the added metadata that indicates the time it was created.
+
+By default both :func:`datadict_to_hdf5 <plottr.data.datadict_storage.datadict_to_hdf5>` and and :func:`datadict_from_hdf5 <plottr.data.datadict_storage.datadict_from_hdf5>` save and load the datadict in the 'data' group of the DDH5. Both of these can by changed by passing another group to the argument 'groupname'. We can see this if we manually create a second group and save a new DataDict there:
+
+>>> data_dict2 = DataDict(a=dict(values=np.array([0,1,2]), axes=[], __unit__='cm'), b=dict(values=np.array([3,4,5]), axes=['a']))
+>>> with h5py.File('folder\data.ddh5', 'a') as file:
+>>>    file.create_group('other_data')
+>>> datadict_to_hdf5(data_dict2, 'folder\data.ddh5', groupname='other_data')
+
+If we then load the DDH5 file like before we only see the first DataDict:
+
+>>> loaded_data_dict = datadict_from_hdf5('folder\data.ddh5', 'data')
+>>> loaded_data_dict
+{'__creation_time_sec__': 1651159636.0,
+ '__creation_time_str__': '2022-04-28 10:27:16',
+ 'x': {'values': array([0, 1, 2]),
+  'axes': [],
+  '__shape__': (3,),
+  '__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  '__unit__': 'cm',
+  'unit': '',
+  'label': ''},
+ 'y': {'values': array([3, 4, 5]),
+  'axes': ['x'],
+  '__shape__': (3,),
+  '__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  'unit': '',
+  'label': ''}}
+
+To see the other DataDict we can specify the group in the argument 'groupname':
+
+>>> loaded_data_dict = datadict_from_hdf5('folder\data.ddh5', 'other_data')
+>>> loaded_data_dict
+{'a': {'values': array([0, 1, 2]),
+  'axes': [],
+  '__shape__': (3,),
+  '__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  '__unit__': 'cm',
+  'unit': '',
+  'label': ''},
+ 'b': {'values': array([3, 4, 5]),
+  'axes': ['a'],
+  '__shape__': (3,),
+  '__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  'unit': '',
+  'label': ''}}
+
+We can also use :func:`all_datadicts_from_hdf5 <plottr.data.datadict_storage.all_datadicts_from_hdf5>` to get a dictionary with all DataDicts in every group inside:
+
+>>> all_datadicts = all_datadicts_from_hdf5('folder\data.ddh5')
+>>> all_datadicts
+{'data': {'__creation_time_sec__': 1651159636.0,
+  '__creation_time_str__': '2022-04-28 10:27:16',
+  'x': {'values': array([0, 1, 2]),
+   'axes': [],
+   '__shape__': (3,),
+   '__creation_time_sec__': 1651159636.0,
+   '__creation_time_str__': '2022-04-28 10:27:16',
+   '__unit__': 'cm',
+   'unit': '',
+   'label': ''},
+  'y': {'values': array([3, 4, 5]),
+   'axes': ['x'],
+   '__shape__': (3,),
+   '__creation_time_sec__': 1651159636.0,
+   '__creation_time_str__': '2022-04-28 10:27:16',
+   'unit': '',
+   'label': ''}},
+ 'other_data': {'a': {'values': array([0, 1, 2]),
+   'axes': [],
+   '__shape__': (3,),
+   '__creation_time_sec__': 1651159636.0,
+   '__creation_time_str__': '2022-04-28 10:27:16',
+   '__unit__': 'cm',
+   'unit': '',
+   'label': ''},
+  'b': {'values': array([3, 4, 5]),
+   'axes': ['a'],
+   '__shape__': (3,),
+   '__creation_time_sec__': 1651159636.0,
+   '__creation_time_str__': '2022-04-28 10:27:16',
+   'unit': '',
+   'label': ''}}}
+
+DDH5 Writer
+^^^^^^^^^^^
+
+Most times we want to be saving data to disk as soon as it is generated by an experiment (or iteration), instead of waiting to have a complete DataDict. To do this, Datadict_storage also offers a `context manager <https://docs.python.org/3/library/stdtypes.html#context-manager-types>`__ with which we can safely save our incoming data.
+
+To use it we first need to create an empty DataDict that contains the structure of how the data is going to look like:
+
+>>> data_dict = DataDict(
+>>> x = dict(unit='x_unit'),
+>>> y = dict(unit='y_unit', axes=['x']))
+
+With our created DataDict, we can start the :class:`DDH5Writer <plottr.data.datadict_storage.DDH5Writer>` context manager and add data to our DataDict utilizing the :meth:`add_data <plottr.data.datadict_storage.DDH5Writer.add_data>`
+
+>>> with DDH5Writer(datadict=data_dict, basedir='./data/', name='Test') as writer:
+>>>    for x in range(10):
+>>>        writer.add_data(x=x, y=x**2)
+Data location:  data\2022-04-27\2022-04-27T145308_a986867c-Test\data.ddh5
+
+The writer created the folder 'data' (because it did not exist before) and inside that folder, created another new folder for the current day and another new folder inside of it day folder for the the DataDict that we saved with the naming structure of ``YYYY-mm-dd_THHMMSS_<ID>-<name>/<filename>.ddh5``, where name is the name parameter passed to the writer. The writer creates this structure such that when we run the writer again with new data, it will create another folder following the naming structure inside the current date folder. This way each new DataDict will be saved in the date it was generated with a time stamp in the name of the folder containing it.
+
+Changing File Extension and Time Format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Finally, datadict_storage contains 2 module variables, 'DATAFILEXT' and 'TIMESTRFORMAT'.
+
+'DATAFILEXT' by default is 'ddh5', and it is used to specify the extension file of all of the module saving functions. Change this variable if you want your HDF5 to have a different extension by default, instead of passing it everytime.
+
+'TIMESTRFORMAT' specifies how the time is formated in the new metadata created when saving a DataDict. The default is: ``"%Y-%m-%d %H:%M:%S"``, and it follows the structure of `strftime <https://docs.python.org/3/library/time.html#time.strftime>`__.
+
+
 Reference
-^^^^^^^^^
+---------
+
+DataDict
+^^^^^^^^
 
 DataDictBase
 ~~~~~~~~~~~~
@@ -367,4 +551,11 @@ Extra Module Functions
 .. automodule:: plottr.data.datadict
     :members:
     :exclude-members: plottr.data.datadict.docstring, DataDictBase, DataDict, MeshgridDataDict, GriddingError
+
+DataDict Storage
+^^^^^^^^^^^^^^^^
+
+.. automodule:: plottr.data.datadict_storage
+    :members:
+    :exclude-members: plottr.data.datadict_storage.docstring, DDH5LoaderWidget
 
