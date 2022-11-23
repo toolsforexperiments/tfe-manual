@@ -52,6 +52,7 @@ measurements easier.
    :caption: Contents:
 
    plottr/index
+   instrumentserver/index
 
 
 Indices and tables
