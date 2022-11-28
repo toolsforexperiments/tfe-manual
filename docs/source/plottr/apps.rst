@@ -12,14 +12,14 @@ Autoplot
 
 
 Monitr
-======
+------
 
 Monitr is a file monitoring app that updates in real time showing every measurement in the monitoring folder.
 In monitr you can directly open plots to see your data, select favorite items,
 filter items and add images and comments to your data.
 
 How to Open Monitr
-------------------
+^^^^^^^^^^^^^^^^^^
 
 Monitr is designed to monitor all subdirectories created inside the monitoring directory.
 We open Monitr from a Linux terminal with the command:
@@ -44,7 +44,7 @@ that lives inside the monitoring directory and will keep updating itself in real
 showing any new datasets, deleting them when the files are deleted, and changing the names of them when necessary.
 
 Datasets
---------
+^^^^^^^^
 
 At the moment we define a folder as a dataset if it contains either a ddh5, markdown or json file inside of it.
 This is defined in the :meth:`SupportedDataTypes <plottr.plottr.apps.monitr.SupportedDataTypes>` object.
@@ -54,7 +54,7 @@ If any file directory passes a regex matching with these file types, its parent 
     or it doesn't have a folder that has them, the folder will not show in the main file tree.
 
 Main Window (File Explorer)
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following is an example taken from a real data folder.
 
@@ -62,7 +62,7 @@ The following is an example taken from a real data folder.
 
 
 Basic Control And Usability
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+'''''''''''''''''''''''''''
 
 Selecting an item, either by clicking on it or selecting it with the arrow keys, will open the :ref:`right side window`.
 If you select an item that contains children, the right side window will contain all of the information of the selected item and all of its children:
@@ -78,7 +78,7 @@ The following are a few things that the window can do:
 .. image:: img/tips_image.png
 
 Tags
-^^^^
+''''
 
 Monitr supports user created tags.
 Any file whose name end with ".tag" is considered a tag, and its file name becomes the text of the tag.
@@ -89,7 +89,7 @@ Two special tags exists: "__star__.tag" and "__trash__.tag", these will add icon
 The trash tag is the only tag that can be used to hide items.
 
 Filtering
-^^^^^^^^^
+'''''''''
 
 You can filter utilizing the "Filter Items" entry. All our filtering occurs by regex matching.
 When filtering, Monitr will show parent items if they contain children that match the filter requirements (even if the parent itself does not match).
@@ -128,7 +128,7 @@ Monitr supports filtering for:
 
 
 Star and Trash Items
-^^^^^^^^^^^^^^^^^^^^
+''''''''''''''''''''
 
 You can star or trash items by right clicking on them and clicking on the star or trash button.
 This will create a tag file inside of that folder ("__star__.tag" or "__trash__.tag"),
@@ -150,7 +150,7 @@ The star and hide trash buttons (top right buttons of the main window picture) a
 
 
 Right Side Window
------------------
+^^^^^^^^^^^^^^^^^
 
 When clicking on a dataset, the right side window will get populated with the files that are inside of it.
 
@@ -162,7 +162,7 @@ All viewer widgets (expect the dataset header, the tags display, and the tag cre
 These windows can be collapsed to hide them.
 
 Tags Display and Tag Creator
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+''''''''''''''''''''''''''''
 
 Under the file header you will see the tags display.
 In it, all tags that are tagging that dataset will appear with different colors.
@@ -176,7 +176,7 @@ You can add multiple tags at a time by separating them with a coma:
 .. image:: img/tags_created.png
 
 Data Viewer
-^^^^^^^^^^^
+'''''''''''
 
 If there is any valid data file in the selected dataset, the data viewer window will appear under the tag creator.
 All valid data files will appear as individual entries in that tree,
@@ -187,7 +187,7 @@ To open an Autoplot window you have to right click in the file name line to open
 .. image:: img/data_viewer.png
 
 Extra Files Viewers
-^^^^^^^^^^^^^^^^^^^
+'''''''''''''''''''
 
 All extra files are displayed under the comment creator (more on it later) and are ordered in alphabetical ordered.
 This is so that if the files have the correct time stamp at the beginning of their name they will appear from newest to oldest.
