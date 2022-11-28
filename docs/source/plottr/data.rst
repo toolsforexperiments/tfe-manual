@@ -278,9 +278,9 @@ We can delete all the meta data present in the DataDict with the :meth:`clear_me
 
 .. note::
     There are 3 helper functions in the datadict module that help converting from meta data name to key.
-    These are: :func:`is_meta_key <plottr.data.datadict.is_meta_key>`,
-    :func:`meta_key_to_name <plottr.data.datadict.meta_key_to_name>` ,
-    and :func:`meta_name_to_key <plottr.data.datadict.meta_name_to_key>`.
+    These are: :func:`is_meta_key() <plottr.data.datadict.is_meta_key>`,
+    :func:`meta_key_to_name() <plottr.data.datadict.meta_key_to_name>` ,
+    and :func:`meta_name_to_key() <plottr.data.datadict.meta_name_to_key>`.
 
 
 
