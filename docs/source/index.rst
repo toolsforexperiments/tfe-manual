@@ -53,6 +53,7 @@ measurements easier.
 
    plottr/index
    instrumentserver/index
+   labcore/index
 
 
 Indices and tables
