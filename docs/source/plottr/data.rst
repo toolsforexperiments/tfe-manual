@@ -4,6 +4,8 @@ Data formats
 In-memory data
 --------------
 
+.. _datadict_documentation:
+
 Basic Concept
 ^^^^^^^^^^^^^
 
