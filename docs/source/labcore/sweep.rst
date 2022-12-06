@@ -2,7 +2,7 @@ Sweeping
 ========
 
 Basic Example
-^^^^^^^^^^^^^
+-------------
 
 A Sweep is created out of two main components, an iterable **pointer** and a variable number of **actions**.
 Both **pointer** and **actions** may generate **records**.
@@ -231,7 +231,6 @@ property: True
 other stuff: () {'value': 2, 'data': 0, 'another_property': 'Hello'}
 ----
 Data: {'value': 2, 'data': 0}
-
 
 A QCoDeS Parameter Sweep
 ^^^^^^^^^^^^^^^^^^^^^^^^
