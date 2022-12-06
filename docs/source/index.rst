@@ -52,6 +52,8 @@ measurements easier.
    :caption: Contents:
 
    plottr/index
+   instrumentserver/index
+   labcore/index
 
 
 Indices and tables

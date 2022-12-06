@@ -50,12 +50,25 @@ TBD.
 Loading data from HDF5
 ^^^^^^^^^^^^^^^^^^^^^^
 
-TBD.
+To easily load :class:`~plottr.data.datadict.DataDict` from an HDF5 file we can use the function
+:func:`~plottr.data.datadict_storage.datadict_from_hdf5`. We can also store a :class:`~plottr.data.datadict.DataDict`
+with :func:`~plottr.data.datadict_storage.datadict_to_hdf5`.
+
+For more information on DataDicts and how to work with them please see `Data Formats <data.rst>`__
 
 Live plotting measurement data
 ------------------------------
 
-TBD.
+The `autoplot app` is able to live plot measurement by changing the "Refresh interval (s)" Option in the top toolbar.
+For a live monitoring of the entire data directory we can use the `monitr app`. We can start this app by running
+the following command in a terminal:
+
+.. code-block:: console
+
+    $ plottr-monitr <general-data-path>
+
+All folders containing data will show up in the app and we can open an `autoplot app` for any already or incoming HDF5
+data file. For more on how to use the app please see `Plottr Apps <apps.rst>`__
 
 
 
