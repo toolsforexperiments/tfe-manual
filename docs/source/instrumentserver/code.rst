@@ -1,8 +1,5 @@
-Temporary Code Documentation
-============================
-
-This is a temporary file to have code references from other files.
-
+Code Documentation
+==================
 
 Server
 ------

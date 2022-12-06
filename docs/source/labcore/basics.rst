@@ -12,11 +12,9 @@ and install into the desired environment using the
 Quick Overview
 --------------
 
-Concepts
-^^^^^^^^
-
-The main task for running experiences utilizing `labcore` is to define what your :class:`Sweep <labcore.measurement.Sweep>` is.
-A Sweep object can be iterated over, this is how we execute measurements.
+Labcore is a set of tools that help you run experiments in your lab.
+Currently it only includes the functionalities for creating :class:`Sweeps <labcore.measurement.Sweep>`.
+A Sweep object can be iterated over and is our primary way of executing measurements.
 Each iteration performs some actions and return some data in the form of a dictionary, we call this dictionary generated after each step a **record**.
 
 A sweep is composed of 2 parts, a **pointer**, and **actions**:
@@ -33,12 +31,12 @@ Defining and executing a basic sweep would look something like this:
 >>> {variable_1: some_data, variable_2: more_data}
 >>> {variable_1: different_data, variable_2: more_different_data}
 
-Where the `range` function is your **pointer** and the 2 functions are your **actions**.
+Where the ``range`` function is your **pointer** and the 2 functions are your **actions**.
 
 Once the sweep is created but before execution we can easily infer what records the sweep produces.
-Sweeps can be combined in ways that result in nesting, zipping, or appending. Combining sweeps again results in a sweep.
+Sweeps can be combined in ways that result in nesting, zipping, or appending. Combining sweeps again results in a Sweep.
 This will allow us to construct modular measurements from pre-defined blocks.
-For more information please see :ref:`Introduction to sweeping <labcore sweeping>`
+For more information please see :doc:`sweep`.
 
 
 

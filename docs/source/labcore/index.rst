@@ -19,4 +19,4 @@ before any measurement code is executed.
     :caption: Contents
 
     basics
-    intro
+    sweep

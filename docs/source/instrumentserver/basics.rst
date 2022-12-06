@@ -42,7 +42,7 @@ This will make the server listen to both the local host and the IP address 192.1
 
 We communicate with the server with Python code. This can be done anywhere that python can run, an IPython console, a Jupyter notebook, etc.
 The easiest way of creating :class:`Client <instrumentserver.client.proxy.Client>` and
-running the :func:`create_instrument() <instrumentserver.client.proxy.Client.create_instrument>` method.
+running the :func:`find_or_create_instrument() <instrumentserver.client.proxy.Client.find_or_create_instrument>` method.
 
 .. note::
     Remember to pass the instrument specific arguments and keyword arguments necessary for the specific QCoDeS instrument
@@ -71,7 +71,7 @@ Parameter Manager
 ^^^^^^^^^^^^^^^^^
 
 `instrumentserver` also comes with the virtual instrument Parameter Manager.
-The Parameter Manager allows us to store values in an instrument inside of the `instrumentserver`, allowing us to access them from any process or other devices in the same network.
+The Parameter Manager allows us to store values in an instrument inside of the `instrumentserver`, allowing us to access them from any process or devices in the same network.
 The idea of it is to have a single source of truth for parameters whose values change frequently, and it provides a GUI from which you can change the values and easily see what they are.
 
 To open the Parameter Manager we first need to open the `instrumentserver`.
