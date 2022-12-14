@@ -52,7 +52,7 @@ This will look for the specified instrument with the given name in the server or
 exist, and return it:
 
 >>> cli = Client()
->>> dummy_instrument = cli.create_instrument(instrument_class='instrumentserver.testing.dummy_instruments.generic.DummyChannel', name='dummy_instrument')
+>>> dummy_instrument = cli.find_or_create_instrument(instrument_class='instrumentserver.testing.dummy_instruments.generic.DummyChannel', name='dummy_instrument')
 
 .. note::
     If we are trying to talk to a server running in a different device in the network we need to specify the IP address
